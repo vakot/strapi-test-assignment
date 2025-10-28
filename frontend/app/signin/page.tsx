@@ -22,7 +22,7 @@ export default function SigninPage() {
   }
 
   return (
-    <Card className="w-full max-w-sm mx-auto md:mt-40 mt-10">
+    <Card className="w-full max-w-sm mx-auto md:mt-30 mt-10">
       <CardHeader>
         <CardTitle>
           <span>Login to your account</span>

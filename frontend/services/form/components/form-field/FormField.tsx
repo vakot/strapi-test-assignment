@@ -1,6 +1,6 @@
 'use client'
 
-import { Label } from '@/components/ui/label'
+import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { useFieldController } from '@/services/form/hooks/useFieldController'
 import type {
   FormFieldControl,
@@ -47,6 +47,7 @@ const Content: React.FC<ContentProps> = (props) => {
 }
 
 export interface FormFieldProps extends FormFieldType {
+  className?: string
   error?: string
   control: Control<any>
 }
@@ -57,7 +58,7 @@ export interface FormFieldProps extends FormFieldType {
  * switch logic and controller
  */
 const FormField: React.FC<FormFieldProps> = (props) => {
-  const { control, ...field } = props
+  const { className, control, ...field } = props
 
   // Hooks
   const { field: controlledField, error } = useFieldController({
@@ -66,11 +67,11 @@ const FormField: React.FC<FormFieldProps> = (props) => {
   })
 
   return (
-    <div>
-      <Label htmlFor={field.name}>{field.label || field.name}</Label>
+    <Field className={className}>
+      <FieldLabel htmlFor={field.name}>{field.label || field.name}</FieldLabel>
       <Content field={field} control={controlledField} />
-      {!!error && <span className="text-red-700">{error}</span>}
-    </div>
+      <FieldError>{error}</FieldError>
+    </Field>
   )
 }
 

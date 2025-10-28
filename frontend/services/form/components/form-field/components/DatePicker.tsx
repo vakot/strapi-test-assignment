@@ -23,9 +23,10 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
   const [open, setOpen] = useState(false)
 
   // Styles
-  const classes = classNames('justify-between w-full text-sm font-normal', {
-    'text-muted-foreground': !value,
-  })
+  const classes = classNames(
+    'justify-between w-full text-sm font-normal shadow-sm',
+    { 'text-muted-foreground': !value },
+  )
 
   // Markup
   const copy = value ? value.toLocaleDateString() : 'Select date...'
