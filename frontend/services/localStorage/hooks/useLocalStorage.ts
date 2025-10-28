@@ -8,10 +8,16 @@ import { useCallback, useEffect, useState } from 'react'
  */
 export const useLocalStorage = <T>(
   key: string,
-  defaultValue: T | null = null
+  defaultValue: T | null = null,
 ) => {
+  // Handlers
   const readValue = useCallback(() => {
     try {
+      if (typeof window === 'undefined') {
+        // SSR guard — localStorage not available
+        return defaultValue
+      }
+
       const item = localStorage.getItem(key)
 
       if (!item) return defaultValue
@@ -27,10 +33,17 @@ export const useLocalStorage = <T>(
     }
   }, [key, defaultValue])
 
+  // Hooks
   const [storedValue, setStoredValue] = useState<T | null>(readValue)
 
+  // Handlers
   const setValue = (value: T | null) => {
     try {
+      if (typeof window === 'undefined') {
+        // SSR guard — localStorage not available
+        return defaultValue
+      }
+
       if (value === null) {
         localStorage.removeItem(key)
       } else {
@@ -45,7 +58,7 @@ export const useLocalStorage = <T>(
     }
   }
 
-  useEffect(() => {
+  const onKeyChange = () => {
     const handleStorageChange = (event: StorageEvent) => {
       if (event.key === key) {
         setStoredValue(readValue())
@@ -54,7 +67,10 @@ export const useLocalStorage = <T>(
 
     window.addEventListener('storage', handleStorageChange)
     return () => window.removeEventListener('storage', handleStorageChange)
-  }, [key, readValue])
+  }
+
+  // Effect
+  useEffect(onKeyChange, [key, readValue])
 
   return [storedValue, setValue] as const
 }
