@@ -2,19 +2,24 @@
 
 import { Country } from '@/services/country/types'
 import { FormField } from '@/services/form/types'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
+import { CtxUser } from '@/contexts/user'
 import { URL_API_AUTH_FORM } from '@/services/auth/constants/url'
 import { useAxios } from '@/services/axios/hooks/useAxios'
 
 const useFormSignup = (countryId: Country['id']) => {
   // Hooks
+  const { id } = useContext(CtxUser)
   const { axios, loading, error } = useAxios()
   const [fields, setFields] = useState<FormField[]>([])
 
+  // Setup
+  const isValidUser = !!id
+
   // Handlers
   const onCountryChange = () => {
-    if (!countryId) return
+    if (!countryId || isValidUser) return
 
     const fetch = async () => {
       try {
@@ -27,7 +32,7 @@ const useFormSignup = (countryId: Country['id']) => {
   }
 
   // Effects
-  useEffect(onCountryChange, [axios, countryId])
+  useEffect(onCountryChange, [axios, isValidUser, countryId])
 
   return { fields, error, loading }
 }

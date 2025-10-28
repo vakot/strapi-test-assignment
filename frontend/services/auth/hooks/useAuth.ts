@@ -3,7 +3,7 @@
 import { FormLoginData, FormSignupData } from '@/services/auth/components/types'
 import {
   URL_API_AUTH_LOCAL,
-  URL_API_AUTH_LOCAL_REGISTER
+  URL_API_AUTH_LOCAL_REGISTER,
 } from '@/services/auth/constants/url'
 import { useAxios } from '@/services/axios/hooks/useAxios'
 import { useLocalStorage } from '@/services/localStorage/hooks/useLocalStorage'
@@ -20,10 +20,12 @@ const useAuth = () => {
   // Hooks
   const router = useRouter()
   const { axios, error, loading } = useAxios()
-  const [_, setToken] = useLocalStorage<string>('token')
+  const [token, setToken] = useLocalStorage<string>('token')
 
   // Handlers
   const signup = async (data: FormSignupData) => {
+    if (token) return
+
     try {
       const res = await axios.post(URL_API_AUTH_LOCAL_REGISTER, data)
       setToken(res.jwt ?? null)
@@ -32,10 +34,12 @@ const useAuth = () => {
   }
 
   const login = async (data: FormLoginData) => {
+    if (token) return
+
     try {
       const res = await axios.post(URL_API_AUTH_LOCAL, {
         identifier: data.email,
-        password: data.password
+        password: data.password,
       })
       setToken(res.jwt ?? null)
       router.replace('/')
