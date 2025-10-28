@@ -14,10 +14,20 @@
     "label": {
       "type": "string"
     },
+    "placeholder": {
+      "type": "string"
+    },
     "type": {
       "type": "enumeration",
       "default": "text",
-      "enum": ["text", "email", "password", "select", "date", "number"]
+      "enum": [
+        "text",
+        "email",
+        "password",
+        "select",
+        "date",
+        "number"
+      ]
     },
     "required": {
       "type": "boolean",
@@ -38,31 +48,41 @@
     },
     "maxLength": {
       "type": "integer",
-      "min": 1,
       "conditions": {
         "visible": {
           "in": [
             {
               "var": "type"
             },
-            ["text", "password", "email", "number"]
+            [
+              "text",
+              "password",
+              "email",
+              "number"
+            ]
           ]
         }
-      }
+      },
+      "min": 1
     },
     "minLength": {
       "type": "integer",
-      "min": 0,
       "conditions": {
         "visible": {
           "in": [
             {
               "var": "type"
             },
-            ["text", "password", "email", "number"]
+            [
+              "text",
+              "password",
+              "email",
+              "number"
+            ]
           ]
         }
-      }
+      },
+      "min": 0
     },
     "maxValue": {
       "type": "integer",
@@ -124,7 +144,12 @@
             {
               "var": "type"
             },
-            ["text", "password", "email", "number"]
+            [
+              "text",
+              "password",
+              "email",
+              "number"
+            ]
           ]
         }
       }

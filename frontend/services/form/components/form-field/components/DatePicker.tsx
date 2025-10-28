@@ -5,19 +5,22 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import type { FormFieldControl } from '@/services/form/types'
+import type { FormField, FormFieldControl } from '@/services/form/types'
 import classNames from 'classnames'
 import { ChevronDownIcon } from 'lucide-react'
 import { useState } from 'react'
 
-export interface DatePickerProps extends FormFieldControl {}
+export interface DatePickerProps extends FormFieldControl {
+  field: FormField
+}
 
 /**
  * @name DatePicker
  * @description Form controlled `DatePicker` component wrapper
  */
 const DatePicker: React.FC<DatePickerProps> = (props) => {
-  const { name, value, onChange } = props
+  const { field, name, value, onChange } = props
+  const { placeholder } = field
 
   // Hooks
   const [open, setOpen] = useState(false)
@@ -29,7 +32,8 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
   )
 
   // Markup
-  const copy = value ? value.toLocaleDateString() : 'Select date...'
+  const label = placeholder ?? 'Select date...'
+  const copy = value ? value.toLocaleDateString() : label
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

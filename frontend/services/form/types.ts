@@ -40,6 +40,7 @@ export type FormFieldRules = {
 export type FormField = {
   name: string
   label?: string
+  placeholder?: string
   type: 'text' | 'email' | 'password' | 'number' | 'date' | 'select'
   options?: SelectOption[]
 } & FormFieldRules

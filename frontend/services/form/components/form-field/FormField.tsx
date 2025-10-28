@@ -6,20 +6,8 @@ import type {
   FormFieldControl,
   FormField as FormFieldType,
 } from '@/services/form/types'
-import dynamic from 'next/dynamic'
 import type { Control } from 'react-hook-form'
-
-const Select = dynamic(async () => {
-  return import('./components/Select').then((mod) => mod.Select)
-})
-
-const DatePicker = dynamic(async () => {
-  return import('./components/DatePicker').then((mod) => mod.DatePicker)
-})
-
-const Input = dynamic(async () => {
-  return import('./components/Input').then((mod) => mod.Input)
-})
+import { DatePicker, Input, Select } from './components/Async'
 
 interface ContentProps {
   field: FormFieldType
@@ -31,24 +19,21 @@ const Content: React.FC<ContentProps> = (props) => {
 
   switch (field.type) {
     case 'select': {
-      const { options } = field
-      return <Select options={options} {...control} />
+      return <Select field={field} {...control} />
     }
 
     case 'date': {
-      return <DatePicker {...control} />
+      return <DatePicker field={field} {...control} />
     }
 
     default: {
-      const { type } = field
-      return <Input type={type} {...control} />
+      return <Input field={field} {...control} />
     }
   }
 }
 
 export interface FormFieldProps extends FormFieldType {
   className?: string
-  error?: string
   control: Control<any>
 }
 

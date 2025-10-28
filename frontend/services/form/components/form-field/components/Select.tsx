@@ -11,7 +11,7 @@ import {
 import { FormField, FormFieldControl } from '@/services/form/types'
 
 export interface SelectProps extends FormFieldControl {
-  options?: FormField['options']
+  field: FormField
 }
 
 /**
@@ -19,12 +19,16 @@ export interface SelectProps extends FormFieldControl {
  * @description Form controlled `Select` component wrapper
  */
 const Select: React.FC<SelectProps> = (props) => {
-  const { options, onChange, ...rest } = props
+  const { field, onChange, ...rest } = props
+  const { options, placeholder } = field
 
   // Short-circuit
   if (!options || options.length === 0) {
     return <Input disabled={true} placeholder="Loading..." />
   }
+
+  // Markup
+  const label = placeholder ?? 'Select...'
 
   return (
     <BaseSelect
@@ -33,11 +37,11 @@ const Select: React.FC<SelectProps> = (props) => {
       disabled={options?.length === 0}
     >
       <SelectTrigger>
-        <SelectValue placeholder="Select..." />
+        <SelectValue placeholder={label} />
       </SelectTrigger>
 
       <SelectContent>
-        {options?.map(({ value, label }) => (
+        {options.map(({ value, label }) => (
           <SelectItem key={value} value={String(value)}>
             {label}
           </SelectItem>

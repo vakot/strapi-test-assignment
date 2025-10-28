@@ -29,6 +29,7 @@ export interface FormFormField extends Struct.ComponentSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     options: Schema.Attribute.JSON;
     pattern: Schema.Attribute.String;
+    placeholder: Schema.Attribute.String;
     required: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     type: Schema.Attribute.Enumeration<
       ['text', 'email', 'password', 'select', 'date', 'number']
