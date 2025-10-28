@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import { FormLogin } from '@/services/auth/components/form-login'
 import { useRouter } from 'next/navigation'
 
@@ -24,13 +25,18 @@ export default function SigninPage() {
   return (
     <Card className="w-full max-w-sm mx-auto md:mt-30 mt-10">
       <CardHeader>
-        <CardTitle>
+        <CardTitle className="flex items-center gap-4">
           <span>Login to your account</span>
-          <span className="mx-4">|</span>
-          <Button variant="link" className="p-0" onClick={navigate('signup')}>
+          <Separator orientation="vertical" className="h-4" />
+          <Button
+            variant="link"
+            className="p-0 h-auto"
+            onClick={navigate('signup')}
+          >
             Sign Up
           </Button>
         </CardTitle>
+
         <CardDescription>
           Enter your email below to login to your account
         </CardDescription>
