@@ -1,0 +1,134 @@
+{
+  "collectionName": "components_form_form_fields",
+  "info": {
+    "displayName": "FormField",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "label": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "default": "text",
+      "enum": ["text", "email", "password", "select", "date", "number"]
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
+    },
+    "options": {
+      "type": "json",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "type"
+            },
+            "select"
+          ]
+        }
+      }
+    },
+    "maxLength": {
+      "type": "integer",
+      "min": 1,
+      "conditions": {
+        "visible": {
+          "in": [
+            {
+              "var": "type"
+            },
+            ["text", "password", "email", "number"]
+          ]
+        }
+      }
+    },
+    "minLength": {
+      "type": "integer",
+      "min": 0,
+      "conditions": {
+        "visible": {
+          "in": [
+            {
+              "var": "type"
+            },
+            ["text", "password", "email", "number"]
+          ]
+        }
+      }
+    },
+    "maxValue": {
+      "type": "integer",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "type"
+            },
+            "number"
+          ]
+        }
+      }
+    },
+    "minValue": {
+      "type": "integer",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "type"
+            },
+            "number"
+          ]
+        }
+      }
+    },
+    "maxDate": {
+      "type": "date",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "type"
+            },
+            "date"
+          ]
+        }
+      }
+    },
+    "minDate": {
+      "type": "date",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "type"
+            },
+            "date"
+          ]
+        }
+      }
+    },
+    "pattern": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "in": [
+            {
+              "var": "type"
+            },
+            ["text", "password", "email", "number"]
+          ]
+        }
+      }
+    }
+  },
+  "config": {}
+}

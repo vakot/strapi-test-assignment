@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "form_fields",
+  "info": {
+    "singularName": "form-field",
+    "pluralName": "form-fields",
+    "displayName": "FormField"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "private": true,
+      "required": true,
+      "unique": true
+    },
+    "field": {
+      "type": "component",
+      "component": "form.form-field",
+      "repeatable": false,
+      "required": true
+    }
+  }
+}
