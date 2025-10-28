@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "form_config_auths",
+  "info": {
+    "singularName": "form-config-auth",
+    "pluralName": "form-config-auths",
+    "displayName": "FormConfigAuth - Register"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::country.country"
+    },
+    "fields": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::form-field.form-field"
+    }
+  }
+}
