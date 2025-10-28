@@ -1,7 +1,9 @@
-/**
- * form-config-auth-login router
- */
-
-import { factories } from '@strapi/strapi';
-
-export default factories.createCoreRouter('api::form-config-auth-login.form-config-auth-login');
+export default {
+  routes: [
+    {
+      method: 'GET',
+      path: '/form-config-auth-login',
+      handler: 'form-config-auth-login.find',
+    },
+  ],
+}
