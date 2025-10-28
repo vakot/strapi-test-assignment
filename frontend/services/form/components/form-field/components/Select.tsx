@@ -22,13 +22,13 @@ const Select: React.FC<SelectProps> = (props) => {
   const { field, onChange, ...rest } = props
   const { options, placeholder } = field
 
-  // Short-circuit
-  if (!options || options.length === 0) {
-    return <Input disabled={true} placeholder="Loading..." />
-  }
-
   // Markup
   const label = placeholder ?? 'Select...'
+
+  // Short-circuit
+  if (!options || options.length === 0) {
+    return <Input disabled={true} placeholder={label} />
+  }
 
   return (
     <BaseSelect

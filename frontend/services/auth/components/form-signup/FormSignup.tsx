@@ -25,7 +25,7 @@ const FormSignup: React.FC<FormSignupProps> = (props) => {
   const {
     countries,
     error: errorCountries,
-    loading: loadingCountries,
+    loading: countriesLoading,
   } = useCountries()
 
   // Query ~ Auth Form Configuration
@@ -68,6 +68,7 @@ const FormSignup: React.FC<FormSignupProps> = (props) => {
           }))}
           control={control}
           required
+          {...(countriesLoading && { placeholder: 'Loading...' })}
         />
       </div>
 
