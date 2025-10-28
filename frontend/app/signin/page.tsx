@@ -17,6 +17,9 @@ export default function SigninPage() {
   // Hooks
   const router = useRouter()
 
+  // Mutation ~ Auth
+  const { login, error: authError, loading: authLoading } = useAuth()
+
   // Handlers
   const navigate = (to: string) => () => {
     router.replace(to)
@@ -43,7 +46,7 @@ export default function SigninPage() {
       </CardHeader>
 
       <CardContent>
-        <FormLogin id="login-form" />
+        <FormLogin id="login-form" onSubmit={login} />
       </CardContent>
 
       <CardFooter>
