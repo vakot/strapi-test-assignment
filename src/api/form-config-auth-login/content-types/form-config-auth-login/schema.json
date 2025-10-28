@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "form_config_auth_logins",
+  "info": {
+    "singularName": "form-config-auth-login",
+    "pluralName": "form-config-auth-logins",
+    "displayName": "FormConfigAuth - Login"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fields": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::form-field.form-field"
+    }
+  }
+}
