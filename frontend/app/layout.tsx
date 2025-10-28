@@ -30,6 +30,7 @@ export default function RootLayout({
         <div
           style={{ maxWidth: 300 }}
           className="w-full mx-auto md:mt-40 mt-10">
+          <UserProvider>{children}</UserProvider>
         </div>
       </body>
     </html>
