@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@components/ui/button'
+import { ButtonProcessable } from '@components/ui/button-processable'
 import {
   Card,
   CardContent,
@@ -63,7 +64,7 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
   const { email, username } = user
 
   // Query
-  const { logout } = useAuth()
+  const { logout, loading, error } = useAuth()
 
   // Hooks
   const router = useRouter()
@@ -86,14 +87,17 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
       </CardContent>
 
       <CardFooter className="flex gap-6">
-        <Button
+        <ButtonProcessable
           type="button"
           variant="secondary"
           onClick={logout}
           className="flex-1"
+          loading={loading}
+          loadingText="We will miss you :("
+          error={error}
         >
           Logout
-        </Button>
+        </ButtonProcessable>
         <Button onClick={navigate('/dashboard')} className="flex-1">
           Dashboard
         </Button>
