@@ -12,7 +12,7 @@
     "start": "strapi start",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry",
-    "generate": "strapi generate:types --dir ../../types/strapi",
+    "generate": "strapi generate:types",
     "lint": "eslint . --ext .ts,.js",
     "lint:fix": "eslint . --ext .ts,.js --fix",
     "format": "prettier --write \"**/*.{ts,js,json,md}\"",
