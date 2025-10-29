@@ -1,29 +1,43 @@
 import pluginTypescript from '@typescript-eslint/eslint-plugin'
 import pluginPrettier from 'eslint-plugin-prettier'
-import { defineConfig } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 
-export default defineConfig({
-  ignores: ['node_modules'],
-  plugins: { '@typescript-eslint': pluginTypescript, prettier: pluginPrettier },
-  rules: {
-    /*
-     * RECOMMENDED
-     */
-    ...pluginPrettier.configs.recommended.rules,
-    ...pluginTypescript.configs.recommended.rules,
+export default defineConfig([
+  globalIgnores([
+    'node_modules/**',
+    '.next/**',
+    'dist/**',
+    'out/**',
+    'build/**',
+    '.cache/**',
+    '.tmp/**',
+    'eslint',
+  ]),
+  {
+    plugins: {
+      '@typescript-eslint': pluginTypescript,
+      prettier: pluginPrettier,
+    },
+    rules: {
+      /*
+       * RECOMMENDED
+       */
+      ...pluginPrettier.configs.recommended.rules,
+      ...pluginTypescript.configs.recommended.rules,
 
-    /*
-     * PRETTIER
-     */
-    'prettier/prettier': 'warn',
+      /*
+       * PRETTIER
+       */
+      'prettier/prettier': 'warn',
 
-    /*
-     * TYPESCRIPT
-     */
-    '@typescript-eslint/no-explicit-any': 'warn',
-    '@typescript-eslint/no-unused-vars': [
-      'warn',
-      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
-    ],
+      /*
+       * TYPESCRIPT
+       */
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+    },
   },
-})
+])

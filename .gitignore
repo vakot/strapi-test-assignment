@@ -1,1 +1,134 @@
-node_modules
+# =========================
+# OS Files
+# =========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+.Spotlight-V100
+.Trashes
+._*
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# =========================
+# Node / Dependencies
+# =========================
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+.yarn/cache
+.yarn/unplugged
+.yarn/sdks
+.node_history
+lib-cov
+lcov.info
+pids
+logs
+results
+
+# =========================
+# Build / Output
+# =========================
+# Next.js
+.next/
+out/
+# Strapi
+dist/
+build/
+.strapi
+.strapi-updater.json
+.strapi-cloud.json
+exports/
+# General
+.tmp
+*.tsbuildinfo
+
+# =========================
+# Logs & Databases
+# =========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.sql
+*.sqlite
+*.sqlite3
+
+# =========================
+# Tests
+# =========================
+coverage/
+
+# =========================
+# Environment & Secrets
+# =========================
+.env*
+!.env.example
+*.pem
+
+# =========================
+# IDE / Editors
+# =========================
+.idea/
+.vscode/
+nbproject/
+
+# =========================
+# Misc
+# =========================
+*#
+ssl
+public/uploads/*
+!public/uploads/.gitkeep
+.eslintcache
+
+# =========================
+# Packages / Archives
+# =========================
+*.7z
+*.csv
+*.dat
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.seed
+*.so
+*.swo
+*.swp
+*.swn
+*.swm
+*.out
+*.pid
+
+# =========================
+# Vercel / Deployment
+# =========================
+.vercel

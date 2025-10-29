@@ -5,7 +5,6 @@ import baseConfig from '../../eslint.config.mjs'
 export default defineConfig([
   ...baseConfig,
   {
-    ignores: ['dist/**', 'build/**', '.cache/**', '.tmp/**'],
     languageOptions: { parser: parserTypescript, globals: { NodeJS: true } },
     rules: {
       /*
