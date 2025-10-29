@@ -22,26 +22,25 @@ const Select: React.FC<SelectProps> = (props) => {
   const { field, onChange, ...rest } = props
   const { options, placeholder } = field
 
+  // Setup
+  const hasOptions = !!options && options.length
+
   // Markup
   const label = placeholder ?? 'Select...'
 
   // Short-circuit
-  if (!options || options.length === 0) {
-    return <Input disabled={true} placeholder={label} />
+  if (!hasOptions) {
+    return <Input disabled placeholder={label} />
   }
 
   return (
-    <BaseSelect
-      {...rest}
-      onValueChange={onChange}
-      disabled={options?.length === 0}
-    >
+    <BaseSelect {...rest} onValueChange={onChange}>
       <SelectTrigger>
         <SelectValue placeholder={label} />
       </SelectTrigger>
 
       <SelectContent>
-        {options.map(({ value, label }) => (
+        {options?.map(({ value, label }) => (
           <SelectItem key={value} value={String(value)}>
             {label}
           </SelectItem>
