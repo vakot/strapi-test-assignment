@@ -19,7 +19,7 @@ export interface SelectProps extends FormFieldControl {
  * @description Form controlled `Select` component wrapper
  */
 const Select: React.FC<SelectProps> = (props) => {
-  const { field, onChange, ...rest } = props
+  const { field, onChange, ...control } = props
   const { options, placeholder } = field
 
   // Setup
@@ -34,7 +34,7 @@ const Select: React.FC<SelectProps> = (props) => {
   }
 
   return (
-    <BaseSelect {...rest} onValueChange={onChange}>
+    <BaseSelect onValueChange={onChange} {...control}>
       <SelectTrigger>
         <SelectValue placeholder={label} />
       </SelectTrigger>
