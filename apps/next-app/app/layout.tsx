@@ -1,3 +1,4 @@
+import { Toaster } from '@components/ui/sonner'
 import { UserProvider } from '@contexts/user/UserProvider'
 import type { User } from '@services/user/types'
 import type { Metadata } from 'next'
@@ -54,6 +55,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-sm`}
       >
         <UserProvider value={user}>{children}</UserProvider>
+        <Toaster />
       </body>
     </html>
   )
