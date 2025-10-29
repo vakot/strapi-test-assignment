@@ -5,8 +5,8 @@ import type {
   FormSignupData,
 } from '@services/auth/components/types'
 import {
-  URL_API_AUTH_LOCAL,
-  URL_API_AUTH_LOCAL_REGISTER,
+  URL_API_AUTH_LOGIN,
+  URL_API_AUTH_SIGNUP,
 } from '@services/auth/constants/url'
 import { useAxios } from '@services/axios/hooks/useAxios'
 import { useLocalStorage } from '@services/localStorage/hooks/useLocalStorage'
@@ -30,7 +30,7 @@ const useAuth = () => {
     if (token) return
 
     try {
-      const res = await axios.post(URL_API_AUTH_LOCAL_REGISTER, data)
+      const res = await axios.post(URL_API_AUTH_SIGNUP, data)
       setToken(res.jwt ?? null)
       router.replace('/')
     } catch {}
@@ -40,7 +40,7 @@ const useAuth = () => {
     if (token) return
 
     try {
-      const res = await axios.post(URL_API_AUTH_LOCAL, {
+      const res = await axios.post(URL_API_AUTH_LOGIN, {
         identifier: data.email,
         password: data.password,
       })

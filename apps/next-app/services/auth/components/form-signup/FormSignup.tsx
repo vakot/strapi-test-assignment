@@ -45,8 +45,8 @@ const FormSignup: React.FC<FormSignupProps> = (props) => {
   const onSubmit: SubmitHandler<FormSignupData> = (data) => {
     const required = fields.map(({ name }) => name)
     const entries = Object.entries(data)
-    const filtetedEntries = entries.filter(([key]) => required.includes(key))
-    const filteredData = Object.fromEntries(filtetedEntries) as FormSignupData
+    const filteredEntries = entries.filter(([key]) => required.includes(key))
+    const filteredData = Object.fromEntries(filteredEntries) as FormSignupData
     onSubmitProp({ ...filteredData, country: country.value })
   }
 
