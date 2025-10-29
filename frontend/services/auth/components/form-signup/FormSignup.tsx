@@ -55,30 +55,34 @@ const FormSignup: React.FC<FormSignupProps> = (props) => {
   const errors = [countriesError, formError]
 
   return (
-    <form
-      id={id}
-      onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 grid-flow-row-dense"
-    >
-      <FormField
-        type="select"
-        name="country"
-        label="Country"
-        className="col-span-full"
-        options={countries?.map(({ name, id }) => ({
-          value: id,
-          label: name,
-        }))}
-        control={control}
-        required
-        {...(countriesLoading && { placeholder: 'Loading...' })}
-      />
+    <form id={id} onSubmit={handleSubmit(onSubmit)}>
+      <FormContent
+        loading={loading}
+        errors={errors}
+        className="grid grid-cols-1 md:grid-cols-2 grid-flow-row-dense gap-x-4 gap-y-6"
+      >
+        {!countriesLoading && !!countries?.length && (
+          <FormField
+            type="select"
+            name="country"
+            label="Country"
+            className="col-span-full"
+            options={countries.map(({ name, id }) => ({
+              value: id,
+              label: name,
+            }))}
+            control={control}
+            required
+          />
+        )}
 
-      <FormContent loading={loading} errors={errors}>
         {fields?.map((field) => (
-          <div key={field.name} className={getFieldLayout(field)}>
-            <FormField {...field} control={control} />
-          </div>
+          <FormField
+            key={field.name}
+            {...field}
+            className={getFieldLayout(field)}
+            control={control}
+          />
         ))}
       </FormContent>
     </form>

@@ -28,12 +28,12 @@ const FormLogin: React.FC<FormLoginProps> = (props) => {
   const errors = [formError]
 
   return (
-    <form
-      id={id}
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-6"
-    >
-      <FormContent loading={formLoading} errors={errors}>
+    <form id={id} onSubmit={handleSubmit(onSubmit)}>
+      <FormContent
+        loading={formLoading}
+        errors={errors}
+        className="flex flex-col gap-6"
+      >
         {fields?.map((field) => (
           <FormField key={field.name} {...field} control={control} />
         ))}
