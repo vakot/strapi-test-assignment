@@ -1,11 +1,9 @@
 import { DEFAULT_ERROR_MESSAGE } from '@constants/error'
-import { useLocalStorage } from '@services/localStorage/hooks/useLocalStorage'
 import axios, { type AxiosRequestConfig } from 'axios'
 import { useCallback, useMemo, useState } from 'react'
 
 export function useAxios() {
   // Hooks
-  const [token] = useLocalStorage<string>('token')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -15,11 +13,7 @@ export function useAxios() {
       setLoading(true)
 
       try {
-        const headers = {
-          ...config.headers,
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        }
-        const res = await axios.request<T>({ ...config, headers })
+        const res = await axios.request<T>(config)
         return res.data
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -32,7 +26,7 @@ export function useAxios() {
         setLoading(false)
       }
     },
-    [token],
+    [],
   )
 
   const get = useCallback(

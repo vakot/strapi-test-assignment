@@ -1,16 +1,14 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET(req: Request) {
-  // Get the token from the incoming request headers
-  const authHeader = req.headers.get('authorization')
+export async function GET(req: NextRequest) {
+  const token = req.headers.get('authorization')
 
-  if (!authHeader) {
+  if (!token) {
     return NextResponse.json({ error: 'Missing token' }, { status: 401 })
   }
 
-  // Forward request to Strapi
   const res = await fetch(`${process.env.STRAPI_API_URL}/users/me`, {
-    headers: { Authorization: authHeader },
+    headers: { Authorization: `Bearer ${token}` },
     cache: 'no-store',
   })
 

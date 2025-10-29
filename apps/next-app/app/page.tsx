@@ -12,58 +12,69 @@ import {
 import { Separator } from '@components/ui/separator'
 import { CtxUser } from '@contexts/user'
 import { useAuth } from '@services/auth/hooks/useAuth'
+import { User } from '@services/user/types'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 
-export default function Home() {
-  // Context
-  const { id, email, username } = useContext(CtxUser)
-
+const ContentVisitor: React.FC = () => {
   // Hooks
   const router = useRouter()
-  const { logout } = useAuth()
-
-  // Setup
-  const isUserValid = !!id
 
   // Handlers
   const navigate = (to: string) => () => {
     router.replace(to)
   }
 
-  // Short-circuit
-  if (!isUserValid) {
-    return (
-      <Card className="w-full max-w-sm mx-auto md:mt-40 mt-10">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-4">
-            <span>Already have an account?</span>
-            <Separator orientation="vertical" className="h-4" />
-            <Button
-              variant="link"
-              className="p-0 h-auto"
-              onClick={navigate('signin')}
-            >
-              Login
-            </Button>
-          </CardTitle>
-
-          <CardDescription>
-            Ready when you are — log in to unlock what’s next.
-          </CardDescription>
-        </CardHeader>
-
-        <CardFooter>
-          <Button onClick={navigate('signup')} className="w-full">
-            Sign Up
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-4">
+          <span>Already have an account?</span>
+          <Separator orientation="vertical" className="h-4" />
+          <Button
+            variant="link"
+            className="p-0 h-auto"
+            onClick={navigate('/auth/login')}
+          >
+            Login
           </Button>
-        </CardFooter>
-      </Card>
-    )
+        </CardTitle>
+
+        <CardDescription>
+          Ready when you are — log in to unlock what’s next.
+        </CardDescription>
+      </CardHeader>
+
+      <CardFooter>
+        <Button onClick={navigate('/auth/signup')} className="w-full">
+          Sign Up
+        </Button>
+      </CardFooter>
+    </Card>
+  )
+}
+
+interface ContentUserProps {
+  user: User
+}
+
+const ContentUser: React.FC<ContentUserProps> = (props) => {
+  const { user } = props
+  const { email, username } = user
+
+  // Query
+  const { logout } = useAuth()
+
+  // Hooks
+  const router = useRouter()
+
+  // Handlers
+  const navigate = (to: string) => () => {
+    router.replace(to)
   }
 
   return (
-    <Card className="w-full max-w-sm mx-auto md:mt-40 mt-10">
+    <Card>
       <CardHeader>
         <CardTitle>Welcome</CardTitle>
       </CardHeader>
@@ -74,16 +85,30 @@ export default function Home() {
         </span>
       </CardContent>
 
-      <CardFooter>
+      <CardFooter className="flex gap-6">
         <Button
           type="button"
           variant="secondary"
           onClick={logout}
-          className="w-full"
+          className="flex-1"
         >
           Logout
         </Button>
+        <Button onClick={navigate('/dashboard')} className="flex-1">
+          Dashboard
+        </Button>
       </CardFooter>
     </Card>
+  )
+}
+
+export default function Home() {
+  // Hooks
+  const user = useContext(CtxUser)
+
+  return (
+    <div className="w-full max-w-sm mx-auto px-4 md:mt-40 mt-10">
+      {user ? <ContentUser user={user} /> : <ContentVisitor />}
+    </div>
   )
 }

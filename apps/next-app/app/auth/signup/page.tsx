@@ -11,16 +11,16 @@ import {
   CardTitle,
 } from '@components/ui/card'
 import { Separator } from '@components/ui/separator'
-import { FormLogin } from '@services/auth/components/form-login'
+import { FormSignup } from '@services/auth/components/form-signup'
 import { useAuth } from '@services/auth/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 
-export default function SigninPage() {
+export default function SignupPage() {
   // Hooks
   const router = useRouter()
 
   // Mutation ~ Auth
-  const { login, error: authError, loading: authLoading } = useAuth()
+  const { signup, error: authError, loading: authLoading } = useAuth()
 
   // Handlers
   const navigate = (to: string) => () => {
@@ -31,36 +31,36 @@ export default function SigninPage() {
     <Card className="w-full max-w-sm mx-auto md:mt-30 mt-10">
       <CardHeader>
         <CardTitle className="flex items-center gap-4">
-          <span>Login to your account</span>
+          <span>Already have an account?</span>
           <Separator orientation="vertical" className="h-4" />
           <Button
             variant="link"
             className="p-0 h-auto"
-            onClick={navigate('signup')}
+            onClick={navigate('/auth/signin')}
           >
-            Sign Up
+            Login
           </Button>
         </CardTitle>
 
         <CardDescription>
-          Enter your email below to login to your account
+          Select your country, fill out the form, and you’re in!
         </CardDescription>
       </CardHeader>
 
       <CardContent>
-        <FormLogin id="login-form" onSubmit={login} />
+        <FormSignup id="signup-form" onSubmit={signup} />
       </CardContent>
 
       <CardFooter className="flex-col gap-2">
         <ButtonProcessable
           type="submit"
-          form="login-form"
+          form="signup-form"
           className="w-full"
           loading={authLoading}
-          loadingText="Almost there..."
+          loadingText="Launching your journey..."
           error={authError}
         >
-          Login
+          Sign Up
         </ButtonProcessable>
       </CardFooter>
     </Card>

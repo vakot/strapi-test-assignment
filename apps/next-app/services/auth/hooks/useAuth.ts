@@ -6,10 +6,10 @@ import type {
 } from '@services/auth/components/types'
 import {
   URL_API_AUTH_LOGIN,
+  URL_API_AUTH_LOGOUT,
   URL_API_AUTH_SIGNUP,
 } from '@services/auth/constants/url'
 import { useAxios } from '@services/axios/hooks/useAxios'
-import { useLocalStorage } from '@services/localStorage/hooks/useLocalStorage'
 import { useRouter } from 'next/navigation'
 
 /**
@@ -21,36 +21,32 @@ import { useRouter } from 'next/navigation'
  */
 const useAuth = () => {
   // Hooks
-  const router = useRouter()
   const { axios, error, loading } = useAxios()
-  const [token, setToken] = useLocalStorage<string>('token')
+  const router = useRouter()
 
   // Handlers
   const signup = async (data: FormSignupData) => {
-    if (token) return
-
     try {
-      const res = await axios.post(URL_API_AUTH_SIGNUP, data)
-      setToken(res.jwt ?? null)
-      router.replace('/')
+      const user = await axios.post(URL_API_AUTH_SIGNUP, data)
+      if (user) router.refresh()
     } catch {}
   }
 
   const login = async (data: FormLoginData) => {
-    if (token) return
-
     try {
-      const res = await axios.post(URL_API_AUTH_LOGIN, {
+      const user = await axios.post(URL_API_AUTH_LOGIN, {
         identifier: data.email,
         password: data.password,
       })
-      setToken(res.jwt ?? null)
-      router.replace('/')
+      if (user) router.refresh()
     } catch {}
   }
 
-  const logout = () => {
-    setToken(null)
+  const logout = async () => {
+    try {
+      await axios.post(URL_API_AUTH_LOGOUT)
+      router.refresh()
+    } catch {}
   }
 
   return { signup, login, logout, error, loading }

@@ -18,8 +18,21 @@ export async function POST(req: Request) {
 
     const data = await res.json()
 
-    // Forward the response
-    return NextResponse.json(data, { status: res.status })
+    // Check if Strapi returned a JWT
+    const { jwt, user } = data
+    const response = NextResponse.json(user, { status: res.status })
+
+    if (jwt) {
+      response.cookies.set('jwt', jwt, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7, // 7 days
+        sameSite: 'lax',
+      })
+    }
+
+    return response
   } catch (error: any) {
     return NextResponse.json(
       { error: error.message || 'Unknown error' },
