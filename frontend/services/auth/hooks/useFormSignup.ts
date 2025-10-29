@@ -1,14 +1,14 @@
 'use client'
 
-import { Country } from '@/services/country/types'
-import { FormField } from '@/services/form/types'
+import type { Country } from '@/services/country/types'
+import type { FormField } from '@/services/form/types'
 import { useContext, useEffect, useState } from 'react'
 
 import { CtxUser } from '@/contexts/user'
 import { URL_API_AUTH_FORM } from '@/services/auth/constants/url'
 import { useAxios } from '@/services/axios/hooks/useAxios'
 
-const useFormSignup = (countryId: Country['id']) => {
+const useFormSignup = (countryId: Country['id'] = 'default') => {
   // Hooks
   const { id } = useContext(CtxUser)
   const { axios, loading, error } = useAxios()

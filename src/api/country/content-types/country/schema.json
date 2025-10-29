@@ -7,7 +7,7 @@
     "displayName": "Country"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -20,6 +20,10 @@
       "required": true,
       "unique": true,
       "regex": "^[A-Z]+$"
+    },
+    "default": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

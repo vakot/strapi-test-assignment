@@ -16,7 +16,10 @@ export default factories.createCoreController(contentType, ({ strapi }) => ({
 
     // find record by country relation
     const config = await strapi.db.query(contentType).findOne({
-      where: { country: countryId },
+      where:
+        countryId === 'default'
+          ? { country: { default: true } }
+          : { country: countryId },
       populate: { fields: { populate: { field: true } } },
     })
 
