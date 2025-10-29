@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { ButtonProcessable } from '@/components/ui/button-processable'
 import {
   Card,
   CardContent,
@@ -11,6 +12,7 @@ import {
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { FormLogin } from '@/services/auth/components/form-login'
+import { useAuth } from '@/services/auth/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 
 export default function SigninPage() {
@@ -49,10 +51,17 @@ export default function SigninPage() {
         <FormLogin id="login-form" onSubmit={login} />
       </CardContent>
 
-      <CardFooter>
-        <Button type="submit" form="login-form" className="w-full">
+      <CardFooter className="flex-col gap-2">
+        <ButtonProcessable
+          type="submit"
+          form="login-form"
+          className="w-full"
+          loading={authLoading}
+          loadingText="Almost there..."
+          error={authError}
+        >
           Login
-        </Button>
+        </ButtonProcessable>
       </CardFooter>
     </Card>
   )

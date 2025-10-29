@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { ButtonProcessable } from '@/components/ui/button-processable'
 import {
   Card,
   CardContent,
@@ -11,6 +12,7 @@ import {
 } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { FormSignup } from '@/services/auth/components/form-signup'
+import { useAuth } from '@/services/auth/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 
 export default function SignupPage() {
@@ -40,17 +42,26 @@ export default function SignupPage() {
           </Button>
         </CardTitle>
 
-        <CardDescription>Select your country and sign up</CardDescription>
+        <CardDescription>
+          Select your country, fill out the form, and you’re in!
+        </CardDescription>
       </CardHeader>
 
       <CardContent>
         <FormSignup id="signup-form" onSubmit={signup} />
       </CardContent>
 
-      <CardFooter>
-        <Button type="submit" form="signup-form" className="w-full">
+      <CardFooter className="flex-col gap-2">
+        <ButtonProcessable
+          type="submit"
+          form="signup-form"
+          className="w-full"
+          loading={authLoading}
+          loadingText="Launching your journey..."
+          error={authError}
+        >
           Sign Up
-        </Button>
+        </ButtonProcessable>
       </CardFooter>
     </Card>
   )
