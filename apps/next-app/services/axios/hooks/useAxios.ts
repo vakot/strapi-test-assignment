@@ -14,10 +14,18 @@ export function useAxios() {
 
       try {
         const res = await axios.request<T>(config)
+
+        // Handling Next.js API error
+        if ((res.data as any)?.error) {
+          throw new Error((res.data as any).error)
+        }
+
         return res.data
       } catch (error) {
         if (axios.isAxiosError(error)) {
-          setError(error.response?.data?.message || error.message)
+          setError(error.response?.data?.error || error.message)
+        } else if (error instanceof Error) {
+          setError(error.message)
         } else {
           setError(DEFAULT_ERROR_MESSAGE)
         }
