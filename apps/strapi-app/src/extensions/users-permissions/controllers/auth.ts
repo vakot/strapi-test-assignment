@@ -11,8 +11,8 @@ export default factories.createCoreController(
         return ctx.badRequest("'email' field is required")
       }
 
-      if (details.country === 'TW' && !username) {
-        return ctx.badRequest("'username' field is required")
+      if (!details.country) {
+        return ctx.badRequest('Invalid country')
       }
 
       if (!password) {

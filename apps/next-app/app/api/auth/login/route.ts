@@ -18,24 +18,36 @@ export async function POST(req: Request) {
 
     const data = await res.json()
 
-    // Check if Strapi returned a JWT
-    const { jwt, user } = data
-    const response = NextResponse.json(user, { status: res.status })
-
-    if (jwt) {
-      response.cookies.set('jwt', jwt, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        path: '/',
-        maxAge: 60 * 60 * 24 * 7, // 7 days
-        sameSite: 'lax',
-      })
+    // Handle errors returned by Strapi
+    if (!res.ok) {
+      const errorMsg =
+        data.error?.message || data.message || 'Authentication failed'
+      return NextResponse.json({ error: errorMsg }, { status: res.status })
     }
+
+    // Check for JWT
+    const { jwt, user } = data
+    if (!jwt || !user) {
+      return NextResponse.json(
+        { error: 'Invalid response from authentication server' },
+        { status: 500 },
+      )
+    }
+
+    // Set JWT cookie
+    const response = NextResponse.json(user, { status: 200 })
+    response.cookies.set('jwt', jwt, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+      sameSite: 'lax',
+    })
 
     return response
   } catch (error: any) {
     return NextResponse.json(
-      { error: error.message || 'Unknown error' },
+      { error: error.message || 'Unknown server error' },
       { status: 500 },
     )
   }
