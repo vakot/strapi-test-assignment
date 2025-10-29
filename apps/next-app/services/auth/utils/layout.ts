@@ -1,5 +1,5 @@
-import { FORM_LAYOUT_WIDE_ITEMS } from '@/services/auth/constants/layout'
-import type { FormField } from '@/services/form/types'
+import { FORM_LAYOUT_WIDE_ITEMS } from '@services/auth/constants/layout'
+import type { FormField } from '@services/form/types'
 
 /**
  * @name getFieldLayout

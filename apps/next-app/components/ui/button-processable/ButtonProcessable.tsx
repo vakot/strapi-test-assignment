@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button'
-import { FieldError } from '@/components/ui/field'
-import { Spinner } from '@/components/ui/spinner'
+import { Button } from '@components/ui/button'
+import { FieldError } from '@components/ui/field'
+import { Spinner } from '@components/ui/spinner'
 import { Check } from 'lucide-react'
 
 type ButtonProps = React.ComponentPropsWithoutRef<typeof Button>

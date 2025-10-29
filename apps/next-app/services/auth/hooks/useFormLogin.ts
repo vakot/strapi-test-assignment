@@ -1,11 +1,11 @@
 'use client'
 
-import type { FormField } from '@/services/form/types'
+import type { FormField } from '@services/form/types'
 import { useContext, useEffect, useState } from 'react'
 
-import { CtxUser } from '@/contexts/user'
-import { URL_API_AUTH_FORM_LOGIN } from '@/services/auth/constants/url'
-import { useAxios } from '@/services/axios/hooks/useAxios'
+import { CtxUser } from '@contexts/user'
+import { URL_API_AUTH_FORM_LOGIN } from '@services/auth/constants/url'
+import { useAxios } from '@services/axios/hooks/useAxios'
 
 const useFormLogin = () => {
   // Hooks

@@ -1,11 +1,11 @@
 'use client'
 
-import { FormContent } from '@/services/auth/components/form-content'
-import type { FormSignupData } from '@/services/auth/components/types'
-import { useFormSignup } from '@/services/auth/hooks/useFormSignup'
-import { getFieldLayout } from '@/services/auth/utils/layout'
-import { useCountries } from '@/services/country/hooks/useCountries'
-import { FormField } from '@/services/form/components/form-field'
+import { FormContent } from '@services/auth/components/form-content'
+import type { FormSignupData } from '@services/auth/components/types'
+import { useFormSignup } from '@services/auth/hooks/useFormSignup'
+import { getFieldLayout } from '@services/auth/utils/layout'
+import { useCountries } from '@services/country/hooks/useCountries'
+import { FormField } from '@services/form/components/form-field'
 import { useController, useForm, type SubmitHandler } from 'react-hook-form'
 
 export interface FormSignupProps {

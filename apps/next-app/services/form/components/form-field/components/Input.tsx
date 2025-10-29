@@ -1,5 +1,5 @@
-import { Input as BaseInput } from '@/components/ui/input'
-import type { FormField, FormFieldControl } from '@/services/form/types'
+import { Input as BaseInput } from '@components/ui/input'
+import type { FormField, FormFieldControl } from '@services/form/types'
 
 export interface InputProps extends FormFieldControl {
   field: FormField

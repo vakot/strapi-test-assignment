@@ -1,8 +1,8 @@
 'use client'
 
-import { URL_AUTH } from '@/components/providers/user/constants'
-import { CtxUser } from '@/contexts/user'
-import { useUser } from '@/services/user/hooks/useUser'
+import { URL_AUTH } from '@components/providers/user/constants'
+import { CtxUser } from '@contexts/user'
+import { useUser } from '@services/user/hooks/useUser'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 

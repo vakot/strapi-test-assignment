@@ -1,7 +1,7 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { ButtonProcessable } from '@/components/ui/button-processable'
+import { Button } from '@components/ui/button'
+import { ButtonProcessable } from '@components/ui/button-processable'
 import {
   Card,
   CardContent,
@@ -9,10 +9,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { FormSignup } from '@/services/auth/components/form-signup'
-import { useAuth } from '@/services/auth/hooks/useAuth'
+} from '@components/ui/card'
+import { Separator } from '@components/ui/separator'
+import { FormSignup } from '@services/auth/components/form-signup'
+import { useAuth } from '@services/auth/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 
 export default function SignupPage() {

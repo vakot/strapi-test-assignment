@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react'
 import type { Country } from '../types'
 
-import { useAxios } from '@/services/axios/hooks/useAxios'
-import { URL_API_COUNTRIES } from '@/services/country/constants/url'
+import { useAxios } from '@services/axios/hooks/useAxios'
+import { URL_API_COUNTRIES } from '@services/country/constants/url'
 
 const useCountries = () => {
   // Hooks

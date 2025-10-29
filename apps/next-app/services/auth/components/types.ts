@@ -1,5 +1,5 @@
-import { Country } from '@/services/country/types'
-import { User, UserDetails } from '@/services/user/types'
+import { Country } from '@services/country/types'
+import { User, UserDetails } from '@services/user/types'
 
 export type FormLoginData = Pick<User, 'email'> & {
   password: string

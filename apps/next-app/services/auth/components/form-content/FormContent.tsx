@@ -1,5 +1,5 @@
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { Spinner } from '@/components/ui/spinner'
+import { Alert, AlertDescription, AlertTitle } from '@components/ui/alert'
+import { Spinner } from '@components/ui/spinner'
 import { AlertCircleIcon } from 'lucide-react'
 
 interface StateLoadingProps {
@@ -58,7 +58,7 @@ interface FormContentProps {
 
 /**
  * @name FormContent
- * @description Auth form wrpper controlling error display and loading state
+ * @description Auth form wrapper controlling error display and loading state
  */
 const FormContent: React.FC<FormContentProps> = (props) => {
   const { className, loading, errors, children } = props

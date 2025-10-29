@@ -1,4 +1,4 @@
-import { Country } from '@/services/country/types'
+import { Country } from '@services/country/types'
 
 export type UserDetails = {
   country: Country

@@ -1,9 +1,9 @@
 'use client'
 
-import { useAxios } from '@/services/axios/hooks/useAxios'
-import { useLocalStorage } from '@/services/localStorage/hooks/useLocalStorage'
-import { URL_API_USERS_ME } from '@/services/user/constants/url'
-import { User } from '@/services/user/types'
+import { useAxios } from '@services/axios/hooks/useAxios'
+import { useLocalStorage } from '@services/localStorage/hooks/useLocalStorage'
+import { URL_API_USERS_ME } from '@services/user/constants/url'
+import { User } from '@services/user/types'
 import { useEffect, useState } from 'react'
 
 const useUser = () => {

@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Button } from '@components/ui/button'
 import {
   Card,
   CardContent,
@@ -8,10 +8,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { CtxUser } from '@/contexts/user'
-import { useAuth } from '@/services/auth/hooks/useAuth'
+} from '@components/ui/card'
+import { Separator } from '@components/ui/separator'
+import { CtxUser } from '@contexts/user'
+import { useAuth } from '@services/auth/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 

@@ -3,13 +3,13 @@
 import type {
   FormLoginData,
   FormSignupData,
-} from '@/services/auth/components/types'
+} from '@services/auth/components/types'
 import {
   URL_API_AUTH_LOCAL,
   URL_API_AUTH_LOCAL_REGISTER,
-} from '@/services/auth/constants/url'
-import { useAxios } from '@/services/axios/hooks/useAxios'
-import { useLocalStorage } from '@/services/localStorage/hooks/useLocalStorage'
+} from '@services/auth/constants/url'
+import { useAxios } from '@services/axios/hooks/useAxios'
+import { useLocalStorage } from '@services/localStorage/hooks/useLocalStorage'
 import { useRouter } from 'next/navigation'
 
 /**
