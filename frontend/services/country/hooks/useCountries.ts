@@ -16,7 +16,7 @@ const useCountries = () => {
     const fetch = async () => {
       try {
         const res = await axios.get(`${URL_API_COUNTRIES}?sort=name:asc`)
-        setCountries(res.data.data as Country[])
+        setCountries(res.data as Country[])
       } catch {}
     }
 
