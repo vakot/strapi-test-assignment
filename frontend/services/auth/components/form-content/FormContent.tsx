@@ -6,7 +6,7 @@ interface StateLoadingProps {}
 
 const StateLoading: React.FC<StateLoadingProps> = () => {
   return (
-    <div className="mx-auto my-10">
+    <div className="col-span-full mx-auto my-10">
       <Spinner />
     </div>
   )
@@ -20,7 +20,7 @@ const StateError: React.FC<StateErrorProps> = (props) => {
   const { errors } = props
 
   return (
-    <Alert variant="destructive">
+    <Alert variant="destructive" className="col-span-full">
       <AlertCircleIcon />
       <AlertTitle>Unable to load form configuration.</AlertTitle>
       <AlertDescription>

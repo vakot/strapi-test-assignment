@@ -58,26 +58,25 @@ const FormSignup: React.FC<FormSignupProps> = (props) => {
     <form
       id={id}
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-wrap -mx-3 gap-y-6"
+      className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6 grid-flow-row-dense"
     >
-      <div className="w-full px-3">
-        <FormField
-          type="select"
-          name="country"
-          label="Country"
-          options={countries?.map(({ name, id }) => ({
-            value: id,
-            label: name,
-          }))}
-          control={control}
-          required
-          {...(countriesLoading && { placeholder: 'Loading...' })}
-        />
-      </div>
+      <FormField
+        type="select"
+        name="country"
+        label="Country"
+        className="col-span-full"
+        options={countries?.map(({ name, id }) => ({
+          value: id,
+          label: name,
+        }))}
+        control={control}
+        required
+        {...(countriesLoading && { placeholder: 'Loading...' })}
+      />
 
       <FormContent loading={loading} errors={errors}>
         {fields?.map((field) => (
-          <div key={field.name} className={`px-3 ${getFieldLayout(field)}`}>
+          <div key={field.name} className={getFieldLayout(field)}>
             <FormField {...field} control={control} />
           </div>
         ))}
