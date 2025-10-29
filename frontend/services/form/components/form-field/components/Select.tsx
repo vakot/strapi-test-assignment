@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { FormField, FormFieldControl } from '@/services/form/types'
+import type { FormField, FormFieldControl } from '@/services/form/types'
 
 export interface SelectProps extends FormFieldControl {
   field: FormField

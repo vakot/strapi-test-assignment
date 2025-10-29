@@ -1,7 +1,7 @@
 'use client'
 
-import { Control, useController } from 'react-hook-form'
-import { FormField } from '../types'
+import { type Control, useController } from 'react-hook-form'
+import type { FormField } from '../types'
 import { getValidationRules } from '../utils/rules'
 
 export interface UseFieldControllerProps {

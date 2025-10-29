@@ -1,6 +1,9 @@
 'use client'
 
-import { FormLoginData, FormSignupData } from '@/services/auth/components/types'
+import type {
+  FormLoginData,
+  FormSignupData,
+} from '@/services/auth/components/types'
 import {
   URL_API_AUTH_LOCAL,
   URL_API_AUTH_LOCAL_REGISTER,

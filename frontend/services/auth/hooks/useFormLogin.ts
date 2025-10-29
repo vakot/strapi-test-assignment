@@ -1,6 +1,6 @@
 'use client'
 
-import { FormField } from '@/services/form/types'
+import type { FormField } from '@/services/form/types'
 import { useContext, useEffect, useState } from 'react'
 
 import { CtxUser } from '@/contexts/user'

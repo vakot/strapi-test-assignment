@@ -1,6 +1,6 @@
 import { DEFAULT_ERROR_MESSAGE } from '@/constants/error'
 import { useLocalStorage } from '@/services/localStorage/hooks/useLocalStorage'
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { type AxiosRequestConfig } from 'axios'
 import { useCallback, useMemo, useState } from 'react'
 
 export function useAxios() {
@@ -17,7 +17,7 @@ export function useAxios() {
       try {
         const headers = {
           ...config.headers,
-          ...(token ? { Authorization: `Bearer ${token}` } : {})
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
         }
         const res = await axios.request<T>({ ...config, headers })
         return res.data
@@ -32,41 +32,41 @@ export function useAxios() {
         setLoading(false)
       }
     },
-    [token]
+    [token],
   )
 
   const get = useCallback(
     <T = any>(url: string, config?: AxiosRequestConfig) => {
       return request<T>({ ...config, method: 'GET', url })
     },
-    [request]
+    [request],
   )
 
   const post = useCallback(
     <T = any>(url: string, data?: unknown, config?: AxiosRequestConfig) => {
       return request<T>({ ...config, method: 'POST', url, data })
     },
-    [request]
+    [request],
   )
 
   const put = useCallback(
     <T = any>(url: string, data?: unknown, config?: AxiosRequestConfig) => {
       return request<T>({ ...config, method: 'PUT', url, data })
     },
-    [request]
+    [request],
   )
 
   const del = useCallback(
     <T = any>(url: string, config?: AxiosRequestConfig) => {
       return request<T>({ ...config, method: 'DELETE', url })
     },
-    [request]
+    [request],
   )
 
   // Setup
   const memoizedAxios = useMemo(
     () => ({ get, post, put, delete: del }),
-    [get, post, put, del]
+    [get, post, put, del],
   )
 
   return { axios: memoizedAxios, loading, error, request }
