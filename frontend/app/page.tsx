@@ -4,10 +4,12 @@ import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 import { CtxUser } from '@/contexts/user'
 import { useAuth } from '@/services/auth/hooks/useAuth'
 import { useRouter } from 'next/navigation'
@@ -34,13 +36,21 @@ export default function Home() {
     return (
       <Card className="w-full max-w-sm mx-auto md:mt-40 mt-10">
         <CardHeader>
-          <CardTitle>
+          <CardTitle className="flex items-center gap-4">
             <span>Already have an account?</span>
-            <span className="mx-4">|</span>
-            <Button variant="link" className="p-0" onClick={navigate('signin')}>
+            <Separator orientation="vertical" className="h-4" />
+            <Button
+              variant="link"
+              className="p-0 h-auto"
+              onClick={navigate('signin')}
+            >
               Login
             </Button>
           </CardTitle>
+
+          <CardDescription>
+            Ready when you are — log in to unlock what’s next.
+          </CardDescription>
         </CardHeader>
 
         <CardFooter>
