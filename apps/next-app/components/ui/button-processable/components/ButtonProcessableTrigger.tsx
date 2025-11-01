@@ -1,4 +1,5 @@
 import { Button } from '@components/ui/button'
+import { CtxButtonProcessable } from '@components/ui/button-processable/contexts'
 
 import * as React from 'react'
 
@@ -15,7 +16,12 @@ const ButtonProcessableTrigger = React.forwardRef<
   React.ComponentRef<typeof Button>,
   ButtonProcessableTriggerProps
 >((props, ref) => {
-  return <Button ref={ref} {...props} />
+  const { disabled, ...rest } = props
+
+  // Context
+  const { success } = React.useContext(CtxButtonProcessable)
+
+  return <Button ref={ref} disabled={disabled || success} {...rest} />
 })
 
 ButtonProcessableTrigger.displayName = 'ButtonProcessableTrigger'

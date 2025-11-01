@@ -19,7 +19,7 @@ const ButtonLogout: React.FC<ButtonLogoutProps> = (props) => {
   const { className } = props
 
   // Mutation ~ Logout
-  const { logout, loading, error } = useAuth()
+  const { logout, loading, success, error } = useAuth()
 
   // Styles
   const classes = cn('w-full flex-col', className)
@@ -28,6 +28,7 @@ const ButtonLogout: React.FC<ButtonLogoutProps> = (props) => {
     <ButtonProcessable
       className={classes}
       loading={loading}
+      success={success}
       loadingText="We will miss you :("
       error={error}
     >

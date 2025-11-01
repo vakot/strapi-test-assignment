@@ -5,12 +5,14 @@ import { useCallback, useMemo, useState } from 'react'
 export function useAxios() {
   // Hooks
   const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   // Handlers
   const request = useCallback(
     async <T = unknown>(config: AxiosRequestConfig): Promise<T> => {
       setLoading(true)
+      setSuccess(false)
 
       try {
         const res = await axios.request<T>(config)
@@ -20,6 +22,7 @@ export function useAxios() {
           throw new Error((res.data as any).error)
         }
 
+        setSuccess(true)
         return res.data
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -71,5 +74,5 @@ export function useAxios() {
     [get, post, put, del],
   )
 
-  return { axios: memoizedAxios, loading, error, request }
+  return { axios: memoizedAxios, loading, success, error, request }
 }

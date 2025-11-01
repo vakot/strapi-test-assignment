@@ -21,7 +21,7 @@ import { toast } from 'sonner'
  */
 const useAuth = () => {
   // Hooks
-  const { axios, error, loading } = useAxios()
+  const { axios, error, loading, success } = useAxios()
   const router = useRouter()
 
   // Handlers
@@ -42,8 +42,7 @@ const useAuth = () => {
       toast('Enjoy your journey!')
 
       router.refresh() // ensures SSR data reload (proxy will handle redirect)
-    } catch (e: any) {
-      console.log(e)
+    } catch {
       handleError('Signup failed', () => signup(data))
     }
   }
@@ -78,7 +77,7 @@ const useAuth = () => {
     }
   }
 
-  return { signup, login, logout, error, loading }
+  return { signup, login, logout, error, loading, success }
 }
 
 export { useAuth }

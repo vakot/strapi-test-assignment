@@ -26,7 +26,12 @@ export default function SigninPage() {
   const router = useRouter()
 
   // Mutation ~ Auth
-  const { login, error: authError, loading: authLoading } = useAuth()
+  const {
+    login,
+    error: authError,
+    loading: authLoading,
+    success: authSuccess,
+  } = useAuth()
 
   return (
     <Card>
@@ -56,6 +61,7 @@ export default function SigninPage() {
         <ButtonProcessable
           className="w-full flex-col"
           loading={authLoading}
+          success={authSuccess}
           loadingText="Almost there..."
           error={authError}
         >

@@ -26,7 +26,12 @@ export default function SignupPage() {
   const router = useRouter()
 
   // Mutation ~ Auth
-  const { signup, error: authError, loading: authLoading } = useAuth()
+  const {
+    signup,
+    error: authError,
+    loading: authLoading,
+    success: authSuccess,
+  } = useAuth()
 
   return (
     <Card>
@@ -56,6 +61,7 @@ export default function SignupPage() {
         <ButtonProcessable
           className="w-full flex-col"
           loading={authLoading}
+          success={authSuccess}
           loadingText="Launching your journey..."
           error={authError}
         >
