@@ -13,7 +13,7 @@ export interface ButtonLogoutProps {
 
 /**
  * @name ButtonLogout
- * @description Simple ButtonProcessable wrapper for user logout
+ * @description Simple button-processable wrapper for user logout action
  */
 const ButtonLogout: React.FC<ButtonLogoutProps> = (props) => {
   const { className } = props

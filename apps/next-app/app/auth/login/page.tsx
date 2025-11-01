@@ -57,7 +57,7 @@ export default function SigninPage() {
           className="w-full flex-col"
           loading={authLoading}
           loadingText="Almost there..."
-          error={'test error message'}
+          error={authError}
         >
           <ButtonProcessableTrigger
             type="submit"

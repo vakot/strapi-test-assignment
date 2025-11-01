@@ -78,10 +78,10 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
       </CardContent>
 
       <CardFooter className="flex gap-6">
-        <ButtonLogout />
+        <ButtonLogout className="flex-1" />
         <Button
+          className="flex-1 px-0"
           onClick={() => router.push(AppRoutes.Dashboard)}
-          className="flex-1"
         >
           Dashboard
         </Button>

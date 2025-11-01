@@ -1,6 +1,6 @@
+export { ButtonProcessable } from './ButtonProcessable'
 export {
-  ButtonProcessable,
   ButtonProcessableContent,
   ButtonProcessableError,
   ButtonProcessableTrigger,
-} from './ButtonProcessable'
+} from './components'

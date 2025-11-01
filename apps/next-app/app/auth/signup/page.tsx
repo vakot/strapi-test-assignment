@@ -56,8 +56,8 @@ export default function SignupPage() {
         <ButtonProcessable
           className="w-full flex-col"
           loading={authLoading}
-          loadingText="Almost there..."
-          error={'test error message'}
+          loadingText="Launching your journey..."
+          error={authError}
         >
           <ButtonProcessableTrigger
             type="submit"
