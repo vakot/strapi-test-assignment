@@ -67,10 +67,10 @@ export default function SignupPage() {
         >
           <ButtonProcessableTrigger
             type="submit"
-            form="login-form"
+            form="signup-form"
             className="w-full"
           >
-            <ButtonProcessableContent>Login</ButtonProcessableContent>
+            <ButtonProcessableContent>Sign Up</ButtonProcessableContent>
           </ButtonProcessableTrigger>
           <ButtonProcessableError className="text-center mt-2" />
         </ButtonProcessable>
