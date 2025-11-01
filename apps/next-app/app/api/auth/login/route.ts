@@ -1,54 +1,27 @@
+import { getErrorMessage, getErrorStatus } from '@lib/api'
+import { withCookieJWT } from '@lib/auth'
+import { strapi } from '@lib/strapi'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
   try {
-    // Parse incoming JSON body
     const body = await req.json()
 
-    // Send POST request to Strapi
-    const res = await fetch(`${process.env.STRAPI_API_URL}/auth/local`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-      },
-      body: JSON.stringify(body),
-      cache: 'no-store',
-    })
+    const { data } = await strapi.post('/auth/local', body)
 
-    const data = await res.json()
-
-    // Handle errors returned by Strapi
-    if (!res.ok) {
-      const errorMsg =
-        data.error?.message || data.message || 'Authentication failed'
-      return NextResponse.json({ error: errorMsg }, { status: res.status })
-    }
-
-    // Check for JWT
-    const { jwt, user } = data
-    if (!jwt || !user) {
+    if (!data.jwt || !data.user) {
       return NextResponse.json(
         { error: 'Invalid response from authentication server' },
         { status: 500 },
       )
     }
 
-    // Set JWT cookie
-    const response = NextResponse.json(user, { status: 200 })
-    response.cookies.set('jwt', jwt, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-      sameSite: 'lax',
-    })
-
-    return response
+    const response = NextResponse.json(data.user, { status: 200 })
+    return withCookieJWT(response, data.jwt)
   } catch (error: any) {
     return NextResponse.json(
-      { error: error.message || 'Unknown server error' },
-      { status: 500 },
+      { error: getErrorMessage(error) },
+      { status: getErrorStatus(error) },
     )
   }
 }

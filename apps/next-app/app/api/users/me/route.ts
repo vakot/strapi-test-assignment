@@ -1,22 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+import { getErrorMessage, getErrorStatus } from '@lib/api'
+import { strapi } from '@lib/strapi'
+import { AxiosError } from 'axios'
+
 export async function GET(req: NextRequest) {
-  const token = req.headers.get('authorization')
+  try {
+    const Authorization: string | null = req.headers.get('authorization')
 
-  if (!token) {
-    return NextResponse.json({ error: 'Missing token' }, { status: 401 })
+    if (!Authorization) {
+      return NextResponse.json(
+        { error: 'Unauthorized: missing token' },
+        { status: 401 },
+      )
+    }
+
+    const { data: user } = await strapi.get(
+      `${process.env.STRAPI_API_URL}/users/me`,
+      { headers: { Authorization } },
+    )
+
+    return NextResponse.json(user)
+  } catch (error: any) {
+    if (error.code === AxiosError.ERR_BAD_REQUEST) {
+      NextResponse.json(
+        { error: 'Unauthorized: invalid token' },
+        { status: 401 },
+      )
+    }
+
+    return NextResponse.json(
+      { error: getErrorMessage(error) },
+      { status: getErrorStatus(error) },
+    )
   }
-
-  const res = await fetch(`${process.env.STRAPI_API_URL}/users/me`, {
-    headers: { Authorization: `Bearer ${token}` },
-    cache: 'no-store',
-  })
-
-  if (!res.ok) {
-    const errorText = await res.text()
-    return NextResponse.json({ error: errorText }, { status: res.status })
-  }
-
-  const data = await res.json()
-  return NextResponse.json(data)
 }

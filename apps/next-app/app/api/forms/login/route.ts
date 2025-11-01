@@ -1,14 +1,16 @@
+import { getErrorMessage, getErrorStatus } from '@lib/api'
+import { strapi } from '@lib/strapi'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const res = await fetch(
-    `${process.env.STRAPI_API_URL}/form-config-auth-login`,
-    {
-      headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` },
-      cache: 'no-store',
-    },
-  )
+  try {
+    const { data: form } = await strapi.get('/form-config-auth-login')
 
-  const data = await res.json()
-  return NextResponse.json(data)
+    return NextResponse.json(form)
+  } catch (error: any) {
+    return NextResponse.json(
+      { error: getErrorMessage(error) },
+      { status: getErrorStatus(error) },
+    )
+  }
 }

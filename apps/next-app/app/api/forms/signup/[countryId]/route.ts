@@ -1,3 +1,5 @@
+import { getErrorMessage, getErrorStatus } from '@lib/api'
+import { strapi } from '@lib/strapi'
 import { NextResponse } from 'next/server'
 
 interface Params {
@@ -5,25 +7,30 @@ interface Params {
 }
 
 export async function GET(_: Request, { params }: Params) {
-  const { countryId } = await params
+  try {
+    const { countryId } = await params
 
-  if (!countryId) {
-    return NextResponse.json({ error: 'Missing id' }, { status: 400 })
+    if (!countryId) {
+      return NextResponse.json(
+        { error: 'Missing country details' },
+        { status: 400 },
+      )
+    }
+
+    const { data: form } = await strapi.get(`/form-config-auth/${countryId}`)
+
+    return NextResponse.json(form)
+  } catch (error: any) {
+    if (error.status === 404) {
+      return NextResponse.json(
+        { error: 'Form configuration not found' },
+        { status: 404 },
+      )
+    }
+
+    return NextResponse.json(
+      { error: getErrorMessage(error) },
+      { status: getErrorStatus(error) },
+    )
   }
-
-  const res = await fetch(
-    `${process.env.STRAPI_API_URL}/form-config-auth/${countryId}`,
-    {
-      headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` },
-      cache: 'no-store',
-    },
-  )
-
-  if (!res.ok) {
-    const errorText = await res.text()
-    return NextResponse.json({ error: errorText }, { status: res.status })
-  }
-
-  const data = await res.json()
-  return NextResponse.json(data)
 }

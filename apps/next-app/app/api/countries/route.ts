@@ -1,11 +1,16 @@
+import { getErrorMessage, getErrorStatus } from '@lib/api'
+import { strapi } from '@lib/strapi'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const res = await fetch(`${process.env.STRAPI_API_URL}/countries`, {
-    headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` },
-    cache: 'no-store',
-  })
+  try {
+    const { data: countries } = await strapi.get('/countries?sort=name:asc')
 
-  const data = await res.json()
-  return NextResponse.json(data)
+    return NextResponse.json(countries)
+  } catch (error: any) {
+    return NextResponse.json(
+      { error: getErrorMessage(error) },
+      { status: getErrorStatus(error) },
+    )
+  }
 }
