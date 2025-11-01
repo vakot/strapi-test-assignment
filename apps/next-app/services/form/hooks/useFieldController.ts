@@ -14,11 +14,9 @@ export interface UseFieldControllerProps {
  * @name useFieldController
  * @description Hook to get a fully wired field with validation rules from CMS
  */
-export function useFieldController({
-  field,
-  control,
-  defaultValue = '',
-}: UseFieldControllerProps) {
+export const useFieldController = (props: UseFieldControllerProps) => {
+  const { field, control, defaultValue = '' } = props
+
   // Setup ~ Hooks
   const rules = getValidationRules(field)
 

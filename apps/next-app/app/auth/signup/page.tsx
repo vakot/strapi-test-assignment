@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@components/ui/button'
 import {
   ButtonProcessable,
   ButtonProcessableContent,
@@ -19,12 +18,13 @@ import { Separator } from '@components/ui/separator'
 import { AppRoutes } from '@constants/routes'
 import { FormSignup } from '@services/auth/components/form-signup'
 import { useAuth } from '@services/auth/hooks/useAuth'
-import { useRouter } from 'next/navigation'
+import {
+  ButtonNavigation,
+  ButtonNavigationContent,
+  ButtonNavigationTrigger,
+} from '@services/navigation/components/button-navigation'
 
 export default function SignupPage() {
-  // Hooks
-  const router = useRouter()
-
   // Mutation ~ Auth
   const {
     signup,
@@ -39,13 +39,11 @@ export default function SignupPage() {
         <CardTitle className="flex items-center gap-4">
           <span>Already have an account?</span>
           <Separator orientation="vertical" className="h-4" />
-          <Button
-            variant="link"
-            className="p-0 h-auto"
-            onClick={() => router.push(AppRoutes.Login)}
-          >
-            Login
-          </Button>
+          <ButtonNavigation to={AppRoutes.Login}>
+            <ButtonNavigationTrigger variant="link" className="p-0">
+              <ButtonNavigationContent>Login</ButtonNavigationContent>
+            </ButtonNavigationTrigger>
+          </ButtonNavigation>
         </CardTitle>
 
         <CardDescription>
@@ -62,7 +60,6 @@ export default function SignupPage() {
           className="w-full flex-col"
           loading={authLoading}
           success={authSuccess}
-          loadingText="Launching your journey..."
           error={authError}
         >
           <ButtonProcessableTrigger
@@ -70,7 +67,9 @@ export default function SignupPage() {
             form="signup-form"
             className="w-full"
           >
-            <ButtonProcessableContent>Sign Up</ButtonProcessableContent>
+            <ButtonProcessableContent loadingText="Launching your journey...">
+              Sign Up
+            </ButtonProcessableContent>
           </ButtonProcessableTrigger>
           <ButtonProcessableError className="text-center mt-2" />
         </ButtonProcessable>

@@ -19,9 +19,11 @@ const ButtonProcessableTrigger = React.forwardRef<
   const { disabled, ...rest } = props
 
   // Context
-  const { success } = React.useContext(CtxButtonProcessable)
+  const { success, loading } = React.useContext(CtxButtonProcessable)
 
-  return <Button ref={ref} disabled={disabled || success} {...rest} />
+  return (
+    <Button ref={ref} disabled={disabled || success || loading} {...rest} />
+  )
 })
 
 ButtonProcessableTrigger.displayName = 'ButtonProcessableTrigger'

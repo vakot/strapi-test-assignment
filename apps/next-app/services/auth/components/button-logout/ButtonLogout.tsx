@@ -29,16 +29,16 @@ const ButtonLogout: React.FC<ButtonLogoutProps> = (props) => {
       className={classes}
       loading={loading}
       success={success}
-      loadingText="We will miss you :("
       error={error}
     >
       <ButtonProcessableTrigger
-        type="button"
         variant="secondary"
         className="w-full"
         onClick={logout}
       >
-        <ButtonProcessableContent>Logout</ButtonProcessableContent>
+        <ButtonProcessableContent loadingText="We'll miss you">
+          Logout
+        </ButtonProcessableContent>
       </ButtonProcessableTrigger>
       <ButtonProcessableError className="text-center mt-2" />
     </ButtonProcessable>

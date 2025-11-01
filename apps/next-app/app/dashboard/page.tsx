@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from '@components/ui/card'
 import { CtxUser } from '@contexts/user'
-import { ButtonLogout } from '@services/auth/components/button-logout'
+import { Separator } from '@radix-ui/react-separator'
 import { useContext } from 'react'
 
 export default function Dashboard() {
@@ -18,7 +18,11 @@ export default function Dashboard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Welcome</CardTitle>
+        <CardTitle className="flex items-center gap-4">
+          <span>Welcome</span>
+          <Separator orientation="vertical" className="h-4" />
+          {/* <ButtonLogout variant="link" className="p-0" /> */}
+        </CardTitle>
       </CardHeader>
 
       <CardContent>
@@ -28,7 +32,7 @@ export default function Dashboard() {
       </CardContent>
 
       <CardFooter>
-        <ButtonLogout />
+        Dummy dashboard page to confirm user context is shared across pages
       </CardFooter>
     </Card>
   )

@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@components/ui/button'
 import {
   ButtonProcessable,
   ButtonProcessableContent,
@@ -19,12 +18,13 @@ import { Separator } from '@components/ui/separator'
 import { AppRoutes } from '@constants/routes'
 import { FormLogin } from '@services/auth/components/form-login'
 import { useAuth } from '@services/auth/hooks/useAuth'
-import { useRouter } from 'next/navigation'
+import {
+  ButtonNavigation,
+  ButtonNavigationContent,
+  ButtonNavigationTrigger,
+} from '@services/navigation/components/button-navigation'
 
 export default function SigninPage() {
-  // Hooks
-  const router = useRouter()
-
   // Mutation ~ Auth
   const {
     login,
@@ -39,13 +39,11 @@ export default function SigninPage() {
         <CardTitle className="flex items-center gap-4">
           <span>Login to your account</span>
           <Separator orientation="vertical" className="h-4" />
-          <Button
-            variant="link"
-            className="p-0 h-auto"
-            onClick={() => router.push(AppRoutes.Signup)}
-          >
-            Sign Up
-          </Button>
+          <ButtonNavigation to={AppRoutes.Signup}>
+            <ButtonNavigationTrigger variant="link" className="p-0">
+              <ButtonNavigationContent>Sign Up</ButtonNavigationContent>
+            </ButtonNavigationTrigger>
+          </ButtonNavigation>
         </CardTitle>
 
         <CardDescription>
@@ -62,7 +60,6 @@ export default function SigninPage() {
           className="w-full flex-col"
           loading={authLoading}
           success={authSuccess}
-          loadingText="Almost there..."
           error={authError}
         >
           <ButtonProcessableTrigger
@@ -70,7 +67,9 @@ export default function SigninPage() {
             form="login-form"
             className="w-full"
           >
-            <ButtonProcessableContent>Login</ButtonProcessableContent>
+            <ButtonProcessableContent loadingText="Almost there...">
+              Login
+            </ButtonProcessableContent>
           </ButtonProcessableTrigger>
           <ButtonProcessableError className="text-center mt-2" />
         </ButtonProcessable>

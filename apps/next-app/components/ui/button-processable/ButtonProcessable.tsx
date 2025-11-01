@@ -16,18 +16,16 @@ const ButtonProcessable = React.forwardRef<
   HTMLDivElement,
   ButtonProcessableProps
 >((props, ref) => {
-  const { loading, success, loadingText, successText, error, ...rest } = props
+  const { loading, success, error, ...rest } = props
 
   // Setup
   const memoizedState = React.useMemo(
     () => ({
       loading,
       success,
-      loadingText,
-      successText,
       error,
     }),
-    [loading, success, loadingText, successText, error],
+    [loading, success, error],
   )
 
   return (

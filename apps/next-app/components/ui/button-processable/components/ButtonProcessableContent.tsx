@@ -7,14 +7,15 @@ import { CtxButtonProcessable } from '../contexts'
 
 interface ContentProps {
   children?: React.ReactNode
+  loadingText?: React.ReactNode
+  successText?: React.ReactNode
 }
 
 const Content = React.memo((props: ContentProps) => {
-  const { children } = props
+  const { children, loadingText, successText } = props
 
   // Context
-  const { loading, loadingText, success, successText } =
-    React.useContext(CtxButtonProcessable)
+  const { loading, success } = React.useContext(CtxButtonProcessable)
 
   // Short-circuits
   if (loading)
@@ -39,7 +40,10 @@ const Content = React.memo((props: ContentProps) => {
 Content.displayName = 'Content'
 
 export interface ButtonProcessableContentProps
-  extends React.HTMLAttributes<HTMLSpanElement> {}
+  extends React.HTMLAttributes<HTMLSpanElement> {
+  loadingText?: React.ReactNode
+  successText?: React.ReactNode
+}
 
 /**
  * @name ButtonProcessableContent
@@ -51,7 +55,13 @@ const ButtonProcessableContent = React.forwardRef<
   HTMLSpanElement,
   ButtonProcessableContentProps
 >((props, ref) => {
-  const { className, children, ...rest } = props
+  const {
+    className,
+    children,
+    loadingText = DEFAULT_LOADING_LABEL,
+    successText = DEFAULT_SUCCESS_LABEL,
+    ...rest
+  } = props
 
   // Context
   const { loading } = React.useContext(CtxButtonProcessable)
@@ -67,7 +77,9 @@ const ButtonProcessableContent = React.forwardRef<
       aria-live="polite"
       {...rest}
     >
-      <Content>{children}</Content>
+      <Content loadingText={loadingText} successText={successText}>
+        {children}
+      </Content>
     </span>
   )
 })

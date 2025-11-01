@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@components/ui/button'
 import {
   Card,
   CardContent,
@@ -13,28 +12,26 @@ import { Separator } from '@components/ui/separator'
 import { AppRoutes } from '@constants/routes'
 import { CtxUser } from '@contexts/user'
 import { LayoutAuth } from '@layouts/auth'
-import { ButtonLogout } from '@services/auth/components/button-logout'
+import {
+  ButtonNavigation,
+  ButtonNavigationContent,
+  ButtonNavigationTrigger,
+} from '@services/navigation/components/button-navigation'
 import { User } from '@services/user/types'
-import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
 
 const ContentVisitor: React.FC = () => {
-  // Hooks
-  const router = useRouter()
-
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-4">
           <span>Already have an account?</span>
           <Separator orientation="vertical" className="h-4" />
-          <Button
-            variant="link"
-            className="p-0 h-auto"
-            onClick={() => router.push(AppRoutes.Login)}
-          >
-            Login
-          </Button>
+          <ButtonNavigation to={AppRoutes.Login}>
+            <ButtonNavigationTrigger variant="link" className="p-0">
+              <ButtonNavigationContent>Login</ButtonNavigationContent>
+            </ButtonNavigationTrigger>
+          </ButtonNavigation>
         </CardTitle>
 
         <CardDescription>
@@ -43,12 +40,11 @@ const ContentVisitor: React.FC = () => {
       </CardHeader>
 
       <CardFooter>
-        <Button
-          onClick={() => router.push(AppRoutes.Signup)}
-          className="w-full"
-        >
-          Sign Up
-        </Button>
+        <ButtonNavigation to={AppRoutes.Signup} className="w-full">
+          <ButtonNavigationTrigger className="w-full">
+            <ButtonNavigationContent>Sign Up</ButtonNavigationContent>
+          </ButtonNavigationTrigger>
+        </ButtonNavigation>
       </CardFooter>
     </Card>
   )
@@ -62,13 +58,14 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
   const { user } = props
   const { email, username } = user
 
-  // Hooks
-  const router = useRouter()
-
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Welcome</CardTitle>
+        <CardTitle className="flex items-center gap-4">
+          <span>Welcome</span>
+          <Separator orientation="vertical" className="h-4" />
+          {/* <ButtonLogout valiant="link" className="p-0" /> */}
+        </CardTitle>
       </CardHeader>
 
       <CardContent>
@@ -77,14 +74,12 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
         </span>
       </CardContent>
 
-      <CardFooter className="flex gap-6">
-        <ButtonLogout className="flex-1" />
-        <Button
-          className="flex-1 px-0"
-          onClick={() => router.push(AppRoutes.Dashboard)}
-        >
-          Dashboard
-        </Button>
+      <CardFooter>
+        <ButtonNavigation to={AppRoutes.Dashboard} className="w-full">
+          <ButtonNavigationTrigger className="w-full">
+            <ButtonNavigationContent>Dashboard</ButtonNavigationContent>
+          </ButtonNavigationTrigger>
+        </ButtonNavigation>
       </CardFooter>
     </Card>
   )

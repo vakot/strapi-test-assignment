@@ -12,10 +12,20 @@
     "start:strapi": "npm --workspace apps/strapi-app run start",
     "start:next": "npm --workspace apps/next-app run start",
     "build": "npm --workspaces run build",
+    "build:strapi": "npm --workspace apps/strapi-app run build",
+    "build:next": "npm --workspace apps/next-app run build",
     "lint": "npm --workspaces run lint",
+    "lint:strapi": "npm --workspace apps/strapi-app run lint",
+    "lint:next": "npm --workspace apps/next-app run lint",
     "lint:fix": "npm --workspaces run lint:fix",
+    "lint:fix:strapi": "npm --workspace apps/strapi-app run lint:fix",
+    "lint:fix:next": "npm --workspace apps/next-app run lint:fix",
     "format": "npm --workspaces run format",
-    "clean": "npm --workspaces run clean"
+    "format:strapi": "npm --workspace apps/strapi-app run format",
+    "format:next": "npm --workspace apps/next-app run format",
+    "clean": "npm --workspaces run clean",
+    "clean:strapi": "npm --workspace apps/strapi-app run clean",
+    "clean:next": "npm --workspace apps/next-app run clean"
   },
   "devDependencies": {
     "@types/node": "^20",
