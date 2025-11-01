@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from '@components/ui/card'
 import { Separator } from '@components/ui/separator'
+import { AppRoutes } from '@constants/routes'
 import { FormLogin } from '@services/auth/components/form-login'
 import { useAuth } from '@services/auth/hooks/useAuth'
 import { useRouter } from 'next/navigation'
@@ -22,13 +23,8 @@ export default function SigninPage() {
   // Mutation ~ Auth
   const { login, error: authError, loading: authLoading } = useAuth()
 
-  // Handlers
-  const navigate = (to: string) => () => {
-    router.replace(to)
-  }
-
   return (
-    <Card className="w-full max-w-sm mx-auto md:mt-30 mt-10">
+    <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-4">
           <span>Login to your account</span>
@@ -36,7 +32,7 @@ export default function SigninPage() {
           <Button
             variant="link"
             className="p-0 h-auto"
-            onClick={navigate('/auth/signup')}
+            onClick={() => router.push(AppRoutes.Signup)}
           >
             Sign Up
           </Button>

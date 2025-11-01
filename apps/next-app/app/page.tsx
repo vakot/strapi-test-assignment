@@ -11,7 +11,9 @@ import {
   CardTitle,
 } from '@components/ui/card'
 import { Separator } from '@components/ui/separator'
+import { AppRoutes } from '@constants/routes'
 import { CtxUser } from '@contexts/user'
+import { LayoutAuth } from '@layouts/auth'
 import { useAuth } from '@services/auth/hooks/useAuth'
 import { User } from '@services/user/types'
 import { useRouter } from 'next/navigation'
@@ -20,11 +22,6 @@ import { useContext } from 'react'
 const ContentVisitor: React.FC = () => {
   // Hooks
   const router = useRouter()
-
-  // Handlers
-  const navigate = (to: string) => () => {
-    router.replace(to)
-  }
 
   return (
     <Card>
@@ -35,7 +32,7 @@ const ContentVisitor: React.FC = () => {
           <Button
             variant="link"
             className="p-0 h-auto"
-            onClick={navigate('/auth/login')}
+            onClick={() => router.push(AppRoutes.Login)}
           >
             Login
           </Button>
@@ -47,7 +44,10 @@ const ContentVisitor: React.FC = () => {
       </CardHeader>
 
       <CardFooter>
-        <Button onClick={navigate('/auth/signup')} className="w-full">
+        <Button
+          onClick={() => router.push(AppRoutes.Signup)}
+          className="w-full"
+        >
           Sign Up
         </Button>
       </CardFooter>
@@ -68,11 +68,6 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
 
   // Hooks
   const router = useRouter()
-
-  // Handlers
-  const navigate = (to: string) => () => {
-    router.replace(to)
-  }
 
   return (
     <Card>
@@ -98,7 +93,10 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
         >
           Logout
         </ButtonProcessable>
-        <Button onClick={navigate('/dashboard')} className="flex-1">
+        <Button
+          onClick={() => router.push(AppRoutes.Dashboard)}
+          className="flex-1"
+        >
           Dashboard
         </Button>
       </CardFooter>
@@ -111,8 +109,8 @@ export default function Home() {
   const user = useContext(CtxUser)
 
   return (
-    <div className="w-full max-w-sm mx-auto px-4 md:mt-40 mt-10">
+    <LayoutAuth>
       {user ? <ContentUser user={user} /> : <ContentVisitor />}
-    </div>
+    </LayoutAuth>
   )
 }

@@ -1,8 +1,8 @@
 import { Button } from '@components/ui/button'
 import { Calendar } from '@components/ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '@components/ui/popover'
+import { cn } from '@lib/utils'
 import type { FormField, FormFieldControl } from '@services/form/types'
-import classNames from 'classnames'
 import { ChevronDownIcon } from 'lucide-react'
 import { useState } from 'react'
 
@@ -22,10 +22,9 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
   const [open, setOpen] = useState(false)
 
   // Styles
-  const classes = classNames(
-    'justify-between w-full text-sm font-normal shadow-sm',
-    { 'text-muted-foreground': !value },
-  )
+  const classes = cn('justify-between w-full text-sm font-normal shadow-sm', {
+    'text-muted-foreground': !value,
+  })
 
   // Markup
   const label = placeholder ?? 'Select date...'

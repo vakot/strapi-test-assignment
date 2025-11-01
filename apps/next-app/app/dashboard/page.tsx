@@ -20,7 +20,7 @@ export default function Dashboard() {
   const { logout, loading, error } = useAuth()
 
   return (
-    <Card className="w-full max-w-sm mx-auto md:mt-40 mt-10">
+    <Card>
       <CardHeader>
         <CardTitle>Welcome</CardTitle>
       </CardHeader>
