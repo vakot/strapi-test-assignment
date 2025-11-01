@@ -1,7 +1,12 @@
 'use client'
 
 import { Button } from '@components/ui/button'
-import { ButtonProcessable } from '@components/ui/button-processable'
+import {
+  ButtonProcessable,
+  ButtonProcessableContent,
+  ButtonProcessableError,
+  ButtonProcessableTrigger,
+} from '@components/ui/button-processable'
 import {
   Card,
   CardContent,
@@ -49,14 +54,19 @@ export default function SignupPage() {
 
       <CardFooter className="flex-col gap-2">
         <ButtonProcessable
-          type="submit"
-          form="signup-form"
-          className="w-full"
+          className="w-full flex-col"
           loading={authLoading}
-          loadingText="Launching your journey..."
-          error={authError}
+          loadingText="Almost there..."
+          error={'test error message'}
         >
-          Sign Up
+          <ButtonProcessableTrigger
+            type="submit"
+            form="login-form"
+            className="w-full"
+          >
+            <ButtonProcessableContent>Login</ButtonProcessableContent>
+          </ButtonProcessableTrigger>
+          <ButtonProcessableError className="text-center mt-2" />
         </ButtonProcessable>
       </CardFooter>
     </Card>

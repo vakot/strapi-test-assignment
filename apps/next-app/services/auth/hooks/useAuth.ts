@@ -34,30 +34,27 @@ const useAuth = () => {
 
   const signup = async (data: FormSignupData) => {
     try {
-      const user: User = await axios.post(
-        `${API_BASE_URL}/${ApiEndpoints.Signup}`,
-        data,
-      )
+      const url = `${API_BASE_URL}/${ApiEndpoints.Signup}`
+      const user: User = await axios.post(url, data)
 
       if (!user) throw new Error('Invalid user')
 
       toast('Enjoy your journey!')
 
       router.refresh() // ensures SSR data reload (proxy will handle redirect)
-    } catch {
+    } catch (e: any) {
+      console.log(e)
       handleError('Signup failed', () => signup(data))
     }
   }
 
   const login = async (data: FormLoginData) => {
     try {
-      const user: User = await axios.post(
-        `${API_BASE_URL}/${ApiEndpoints.Login}`,
-        {
-          identifier: data.email,
-          password: data.password,
-        },
-      )
+      const url = `${API_BASE_URL}/${ApiEndpoints.Login}`
+      const user: User = await axios.post(url, {
+        identifier: data.email,
+        password: data.password,
+      })
 
       if (!user) throw new Error('Invalid user')
 
@@ -72,7 +69,8 @@ const useAuth = () => {
 
   const logout = async () => {
     try {
-      await axios.post(`${API_BASE_URL}/${ApiEndpoints.Logout}`)
+      const url = `${API_BASE_URL}/${ApiEndpoints.Logout}`
+      await axios.post(url)
 
       router.replace(AppRoutes.Login) // ensures SSR data reload
     } catch {

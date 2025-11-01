@@ -17,9 +17,8 @@ const useFormSignup = (countryId: Country['id'] = 'default') => {
   const onCountryChange = () => {
     const fetch = async () => {
       try {
-        const res = await axios.get(
-          `${API_BASE_URL}/${ApiEndpoints.FormSignup}/${countryId}`,
-        )
+        const url = `${API_BASE_URL}/${ApiEndpoints.FormSignup}/${countryId}`
+        const res = await axios.get(url)
         setFields(res.fields as FormField[])
       } catch {}
     }

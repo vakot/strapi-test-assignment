@@ -1,7 +1,6 @@
 'use client'
 
 import { Button } from '@components/ui/button'
-import { ButtonProcessable } from '@components/ui/button-processable'
 import {
   Card,
   CardContent,
@@ -14,7 +13,7 @@ import { Separator } from '@components/ui/separator'
 import { AppRoutes } from '@constants/routes'
 import { CtxUser } from '@contexts/user'
 import { LayoutAuth } from '@layouts/auth'
-import { useAuth } from '@services/auth/hooks/useAuth'
+import { ButtonLogout } from '@services/auth/components/button-logout'
 import { User } from '@services/user/types'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
@@ -63,9 +62,6 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
   const { user } = props
   const { email, username } = user
 
-  // Query
-  const { logout, loading, error } = useAuth()
-
   // Hooks
   const router = useRouter()
 
@@ -82,17 +78,7 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
       </CardContent>
 
       <CardFooter className="flex gap-6">
-        <ButtonProcessable
-          type="button"
-          variant="secondary"
-          onClick={logout}
-          className="flex-1"
-          loading={loading}
-          loadingText="We will miss you :("
-          error={error}
-        >
-          Logout
-        </ButtonProcessable>
+        <ButtonLogout />
         <Button
           onClick={() => router.push(AppRoutes.Dashboard)}
           className="flex-1"
