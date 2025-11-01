@@ -5,13 +5,14 @@ export enum AppRoutes {
   Signup = '/auth/signup',
 }
 
-export enum ApiRoutes {
-  Login = '/api/auth/login',
-  Signup = '/api/auth/signup',
-  Logout = '/api/auth/logout',
-  FormLogin = '/api/forms/login',
-  FormSignup = '/api/forms/signup',
-  Countries = '/api/countries',
+export enum ApiEndpoints {
+  Login = '/auth/login',
+  Signup = '/auth/signup',
+  Logout = '/auth/logout',
+  FormLogin = '/forms/login',
+  FormSignup = '/forms/signup',
+  Countries = '/countries',
+  Me = '/users/me',
 }
 
 export const AUTH_PAGES = [AppRoutes.Login, AppRoutes.Signup]

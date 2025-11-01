@@ -4,7 +4,8 @@ import type { Country } from '@services/country/types'
 import type { FormField } from '@services/form/types'
 import { useEffect, useState } from 'react'
 
-import { URL_API_AUTH_FORM_SIGNUP } from '@services/auth/constants/url'
+import { API_BASE_URL } from '@constants/api'
+import { ApiEndpoints } from '@constants/routes'
 import { useAxios } from '@services/axios/hooks/useAxios'
 
 const useFormSignup = (countryId: Country['id'] = 'default') => {
@@ -16,7 +17,9 @@ const useFormSignup = (countryId: Country['id'] = 'default') => {
   const onCountryChange = () => {
     const fetch = async () => {
       try {
-        const res = await axios.get(`${URL_API_AUTH_FORM_SIGNUP}/${countryId}`)
+        const res = await axios.get(
+          `${API_BASE_URL}/${ApiEndpoints.FormSignup}/${countryId}`,
+        )
         setFields(res.fields as FormField[])
       } catch {}
     }

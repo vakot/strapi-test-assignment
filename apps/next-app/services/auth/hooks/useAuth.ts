@@ -1,15 +1,12 @@
 'use client'
 
+import { API_BASE_URL } from '@constants/api'
 import { DEFAULT_ERROR_MESSAGE } from '@constants/error'
+import { ApiEndpoints, AppRoutes } from '@constants/routes'
 import type {
   FormLoginData,
   FormSignupData,
 } from '@services/auth/components/types'
-import {
-  URL_API_AUTH_LOGIN,
-  URL_API_AUTH_LOGOUT,
-  URL_API_AUTH_SIGNUP,
-} from '@services/auth/constants/url'
 import { useAxios } from '@services/axios/hooks/useAxios'
 import { User } from '@services/user/types'
 import { useRouter } from 'next/navigation'
@@ -37,7 +34,10 @@ const useAuth = () => {
 
   const signup = async (data: FormSignupData) => {
     try {
-      const user: User = await axios.post(URL_API_AUTH_SIGNUP, data)
+      const user: User = await axios.post(
+        `${API_BASE_URL}/${ApiEndpoints.Signup}`,
+        data,
+      )
 
       if (!user) throw new Error('Invalid user')
 
@@ -51,10 +51,13 @@ const useAuth = () => {
 
   const login = async (data: FormLoginData) => {
     try {
-      const user: User = await axios.post(URL_API_AUTH_LOGIN, {
-        identifier: data.email,
-        password: data.password,
-      })
+      const user: User = await axios.post(
+        `${API_BASE_URL}/${ApiEndpoints.Login}`,
+        {
+          identifier: data.email,
+          password: data.password,
+        },
+      )
 
       if (!user) throw new Error('Invalid user')
 
@@ -69,9 +72,9 @@ const useAuth = () => {
 
   const logout = async () => {
     try {
-      await axios.post(URL_API_AUTH_LOGOUT)
+      await axios.post(`${API_BASE_URL}/${ApiEndpoints.Logout}`)
 
-      router.replace('/auth/login') // ensures SSR data reload
+      router.replace(AppRoutes.Login) // ensures SSR data reload
     } catch {
       handleError('Logout failed', logout)
     }

@@ -59,13 +59,14 @@ const FormSignup: React.FC<FormSignupProps> = (props) => {
       <FormContent
         loading={loading}
         errors={errors}
-        className="grid grid-cols-1 md:grid-cols-2 grid-flow-row-dense gap-x-4 gap-y-6"
+        className="grid grid-cols-1 sm:grid-cols-2 grid-flow-row-dense gap-x-4 gap-y-6"
       >
         {!countriesLoading && !!countries?.length && (
           <FormField
             type="select"
             name="country"
             label="Country"
+            placeholder="Somewhere"
             className="col-span-full"
             options={countries.map(({ name, id }) => ({
               value: id,

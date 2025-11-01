@@ -3,7 +3,7 @@
 import type { FormField } from '@services/form/types'
 import { useEffect, useState } from 'react'
 
-import { URL_API_AUTH_FORM_LOGIN } from '@services/auth/constants/url'
+import { ApiEndpoints } from '@constants/routes'
 import { useAxios } from '@services/axios/hooks/useAxios'
 
 const useFormLogin = () => {
@@ -17,7 +17,7 @@ const useFormLogin = () => {
   const onMount = () => {
     const fetch = async () => {
       try {
-        const res = await axios.get(URL_API_AUTH_FORM_LOGIN)
+        const res = await axios.get(`${API_BASE_URL}/${ApiEndpoints.FormLogin}`)
         setFields(res.fields as FormField[])
       } catch {}
     }

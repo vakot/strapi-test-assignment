@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react'
 import type { Country } from '../types'
 
+import { API_BASE_URL } from '@constants/api'
+import { ApiEndpoints } from '@constants/routes'
 import { useAxios } from '@services/axios/hooks/useAxios'
-import { URL_API_COUNTRIES } from '@services/country/constants/url'
 
 const useCountries = () => {
   // Hooks
@@ -15,7 +16,7 @@ const useCountries = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await axios.get(`${URL_API_COUNTRIES}?sort=name:asc`)
+        const res = await axios.get(`${API_BASE_URL}/${ApiEndpoints.Countries}`)
         setCountries(res.data as Country[])
       } catch {}
     }
