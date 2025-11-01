@@ -20,11 +20,13 @@
       "@lib/*": ["./lib/*"],
       "@public/*": ["./public/*"],
       "@services/*": ["./services/*"],
+      "@layouts/*": ["./layouts/*"],
       "@types/*": ["../../types/*"]
     }
   },
   "include": [
     "next-env.d.ts",
+    "env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
