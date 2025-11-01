@@ -1,29 +1,31 @@
 import { Toaster } from '@components/ui/sonner'
+import { API_BASE_URL } from '@constants/api'
+import { ApiEndpoints } from '@constants/routes'
 import { UserProvider } from '@contexts/user/UserProvider'
 import type { User } from '@services/user/types'
+import axios from 'axios'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { cookies } from 'next/headers'
+import { cookies as headers } from 'next/headers'
 import './globals.css'
 
 const getUser = async () => {
-  const c = await cookies()
-  const token = c.get('jwt')?.value
+  const cookies = await headers()
+  const cookie = cookies.get('jwt')
+  const token = cookie?.value
 
-  let user = null
+  if (!token) return null
 
-  if (token) {
-    const res = await fetch(`${process.env.STRAPI_API_URL}/users/me`, {
-      headers: { Authorization: `Bearer ${token}` },
-      cache: 'no-store',
-    })
+  try {
+    const { data: user } = await axios.get(
+      `${API_BASE_URL}/${ApiEndpoints.Me}`,
+      { headers: { Authorization: `Bearer ${token}` } },
+    )
 
-    if (res.ok) {
-      user = await res.json()
-    }
+    return user
+  } catch {
+    return null
   }
-
-  return user
 }
 
 const geistSans = Geist({
