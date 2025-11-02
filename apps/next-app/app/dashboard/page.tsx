@@ -9,6 +9,12 @@ import {
 } from '@components/ui/card'
 import { CtxUser } from '@contexts/user'
 import { Separator } from '@radix-ui/react-separator'
+import {
+  ButtonLogout,
+  ButtonLogoutContent,
+  ButtonLogoutError,
+  ButtonLogoutTrigger,
+} from '@services/auth/components/button-logout'
 import { useContext } from 'react'
 
 export default function Dashboard() {
@@ -18,11 +24,16 @@ export default function Dashboard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-4">
-          <span>Welcome</span>
-          <Separator orientation="vertical" className="h-4" />
-          {/* <ButtonLogout variant="link" className="p-0" /> */}
-        </CardTitle>
+        <ButtonLogout>
+          <CardTitle className="flex items-center gap-4">
+            <span>Welcome</span>
+            <Separator orientation="vertical" className="h-4" />
+            <ButtonLogoutTrigger variant="link" className="p-0">
+              <ButtonLogoutContent>Logout</ButtonLogoutContent>
+            </ButtonLogoutTrigger>
+          </CardTitle>
+          <ButtonLogoutError />
+        </ButtonLogout>
       </CardHeader>
 
       <CardContent>

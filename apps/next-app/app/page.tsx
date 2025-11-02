@@ -13,6 +13,12 @@ import { AppRoutes } from '@constants/routes'
 import { CtxUser } from '@contexts/user'
 import { LayoutAuth } from '@layouts/auth'
 import {
+  ButtonLogout,
+  ButtonLogoutContent,
+  ButtonLogoutError,
+  ButtonLogoutTrigger,
+} from '@services/auth/components/button-logout'
+import {
   ButtonNavigation,
   ButtonNavigationContent,
   ButtonNavigationTrigger,
@@ -61,11 +67,16 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-4">
-          <span>Welcome</span>
-          <Separator orientation="vertical" className="h-4" />
-          {/* <ButtonLogout valiant="link" className="p-0" /> */}
-        </CardTitle>
+        <ButtonLogout>
+          <CardTitle className="flex items-center gap-4">
+            <span>Welcome</span>
+            <Separator orientation="vertical" className="h-4" />
+            <ButtonLogoutTrigger variant="link" className="p-0">
+              <ButtonLogoutContent>Logout</ButtonLogoutContent>
+            </ButtonLogoutTrigger>
+          </CardTitle>
+          <ButtonLogoutError />
+        </ButtonLogout>
       </CardHeader>
 
       <CardContent>

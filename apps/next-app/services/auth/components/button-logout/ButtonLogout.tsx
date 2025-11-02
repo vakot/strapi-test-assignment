@@ -1,47 +1,31 @@
-import {
-  ButtonProcessable,
-  ButtonProcessableContent,
-  ButtonProcessableError,
-  ButtonProcessableTrigger,
-} from '@components/ui/button-processable'
-import { cn } from '@lib/utils'
+import { ButtonProcessable } from '@components/ui/button-processable'
+import type { ButtonProcessableState } from '@components/ui/button-processable/types'
 import { useAuth } from '@services/auth/hooks/useAuth'
+import { CtxButtonLogout } from './contexts'
 
-export interface ButtonLogoutProps {
-  className?: string
-}
+export interface ButtonLogoutProps
+  extends Omit<
+    React.ComponentProps<typeof ButtonProcessable>,
+    keyof ButtonProcessableState
+  > {}
 
 /**
  * @name ButtonLogout
  * @description Simple button-processable wrapper for user logout action
  */
 const ButtonLogout: React.FC<ButtonLogoutProps> = (props) => {
-  const { className } = props
-
   // Mutation ~ Logout
   const { logout, loading, success, error } = useAuth()
 
-  // Styles
-  const classes = cn('w-full flex-col', className)
-
   return (
-    <ButtonProcessable
-      className={classes}
-      loading={loading}
-      success={success}
-      error={error}
-    >
-      <ButtonProcessableTrigger
-        variant="secondary"
-        className="w-full"
-        onClick={logout}
-      >
-        <ButtonProcessableContent loadingText="We'll miss you">
-          Logout
-        </ButtonProcessableContent>
-      </ButtonProcessableTrigger>
-      <ButtonProcessableError className="text-center mt-2" />
-    </ButtonProcessable>
+    <CtxButtonLogout.Provider value={{ logout, loading, success, error }}>
+      <ButtonProcessable
+        loading={loading}
+        success={success}
+        error={error}
+        {...props}
+      />
+    </CtxButtonLogout.Provider>
   )
 }
 

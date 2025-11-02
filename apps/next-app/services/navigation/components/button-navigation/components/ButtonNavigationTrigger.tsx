@@ -2,8 +2,8 @@ import {
   ButtonProcessableTrigger,
   type ButtonProcessableTriggerProps,
 } from '@components/ui/button-processable'
-import { CtxButtonNavigation } from '@services/navigation/components/button-navigation/contexts'
 import * as React from 'react'
+import { CtxButtonNavigation } from '../contexts'
 
 export interface ButtonNavigationTriggerProps
   extends ButtonProcessableTriggerProps {}
@@ -18,15 +18,21 @@ export interface ButtonNavigationTriggerProps
 const ButtonNavigationTrigger: React.FC<ButtonNavigationTriggerProps> = (
   props,
 ) => {
+  const { onClick, ...rest } = props
+
   // Context
   const { to, startTransition } = React.useContext(CtxButtonNavigation)
 
   // Handlers
-  const onClick = React.useCallback(() => {
-    startTransition(to)
-  }, [to, startTransition])
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      onClick?.(e)
+      startTransition(to)
+    },
+    [to, onClick, startTransition],
+  )
 
-  return <ButtonProcessableTrigger {...props} onClick={onClick} />
+  return <ButtonProcessableTrigger onClick={handleClick} {...rest} />
 }
 
 export { ButtonNavigationTrigger }
