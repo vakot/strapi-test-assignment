@@ -34,7 +34,7 @@
     "**/*.mts",
     "tailwind.config.js",
     "eslint.config.mjs",
-    "postcss.config.mjs",
+    "postcss.config.mjs"
   ],
   "exclude": ["node_modules"]
 }
