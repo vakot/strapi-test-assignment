@@ -1,15 +1,15 @@
 import { DEFAULT_ERROR_MESSAGE } from '@constants/error'
 import axios, { type AxiosRequestConfig } from 'axios'
-import { useCallback, useMemo, useState } from 'react'
+import * as React from 'react'
 
 export function useAxios() {
   // Hooks
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = React.useState(false)
+  const [success, setSuccess] = React.useState(false)
+  const [error, setError] = React.useState<string | null>(null)
 
   // Handlers
-  const request = useCallback(
+  const request = React.useCallback(
     async <T = unknown>(config: AxiosRequestConfig): Promise<T> => {
       setLoading(true)
       setSuccess(false)
@@ -40,28 +40,28 @@ export function useAxios() {
     [],
   )
 
-  const get = useCallback(
+  const get = React.useCallback(
     <T = any>(url: string, config?: AxiosRequestConfig) => {
       return request<T>({ ...config, method: 'GET', url })
     },
     [request],
   )
 
-  const post = useCallback(
+  const post = React.useCallback(
     <T = any>(url: string, data?: unknown, config?: AxiosRequestConfig) => {
       return request<T>({ ...config, method: 'POST', url, data })
     },
     [request],
   )
 
-  const put = useCallback(
+  const put = React.useCallback(
     <T = any>(url: string, data?: unknown, config?: AxiosRequestConfig) => {
       return request<T>({ ...config, method: 'PUT', url, data })
     },
     [request],
   )
 
-  const del = useCallback(
+  const del = React.useCallback(
     <T = any>(url: string, config?: AxiosRequestConfig) => {
       return request<T>({ ...config, method: 'DELETE', url })
     },
@@ -69,7 +69,7 @@ export function useAxios() {
   )
 
   // Setup
-  const memoizedAxios = useMemo(
+  const memoizedAxios = React.useMemo(
     () => ({ get, post, put, delete: del }),
     [get, post, put, del],
   )

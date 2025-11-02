@@ -1,8 +1,8 @@
 import type { User } from '@services/user/types'
-import { createContext } from 'react'
+import * as React from 'react'
 
 const DEFAULT_USER: Omit<User, 'details'> = { email: '' }
 
-export const CtxUser = createContext<User>(DEFAULT_USER as User)
+export const CtxUser = React.createContext<User>(DEFAULT_USER as User)
 
 export { UserProvider } from './UserProvider'

@@ -1,16 +1,16 @@
 'use client'
 
 import type { FormField } from '@services/form/types'
-import { useEffect, useState } from 'react'
 
 import { API_BASE_URL } from '@constants/api'
 import { ApiEndpoints } from '@constants/routes'
 import { useAxios } from '@services/axios/hooks/useAxios'
+import * as React from 'react'
 
 const useFormLogin = () => {
   // Hooks
   const { axios, loading, error } = useAxios()
-  const [fields, setFields] = useState<FormField[]>([])
+  const [fields, setFields] = React.useState<FormField[]>([])
 
   // Setup
 
@@ -28,7 +28,7 @@ const useFormLogin = () => {
   }
 
   // Effects
-  useEffect(onMount, [axios])
+  React.useEffect(onMount, [axios])
 
   return { fields, error, loading }
 }

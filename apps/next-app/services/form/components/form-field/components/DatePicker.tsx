@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@components/ui/popover'
 import { cn } from '@lib/utils'
 import type { FormField, FormFieldControl } from '@services/form/types'
 import { ChevronDownIcon } from 'lucide-react'
-import { useState } from 'react'
+import * as React from 'react'
 
 export interface DatePickerProps extends FormFieldControl {
   field: FormField
@@ -19,7 +19,7 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
   const { placeholder } = field
 
   // Hooks
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = React.useState(false)
 
   // Styles
   const classes = cn('justify-between w-full text-sm font-normal shadow-sm', {

@@ -1,7 +1,8 @@
 import { cn } from '@lib/utils'
-import { HTMLAttributes } from 'react'
 
-export interface LayoutAuthProps extends HTMLAttributes<HTMLDivElement> {}
+import * as React from 'react'
+
+export interface LayoutAuthProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const LayoutAuth: React.FC<LayoutAuthProps> = (props) => {
   const { className, ...rest } = props

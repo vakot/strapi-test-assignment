@@ -24,7 +24,7 @@ import {
   ButtonNavigationTrigger,
 } from '@services/navigation/components/button-navigation'
 import { User } from '@services/user/types'
-import { useContext } from 'react'
+import * as React from 'react'
 
 const ContentVisitor: React.FC = () => {
   return (
@@ -98,7 +98,7 @@ const ContentUser: React.FC<ContentUserProps> = (props) => {
 
 export default function Home() {
   // Hooks
-  const user = useContext(CtxUser)
+  const user = React.useContext(CtxUser)
 
   return (
     <LayoutAuth>

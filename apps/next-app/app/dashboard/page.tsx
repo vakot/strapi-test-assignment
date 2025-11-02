@@ -15,11 +15,11 @@ import {
   ButtonLogoutError,
   ButtonLogoutTrigger,
 } from '@services/auth/components/button-logout'
-import { useContext } from 'react'
+import * as React from 'react'
 
 export default function Dashboard() {
   // Context
-  const { email, username } = useContext(CtxUser)
+  const { email, username } = React.useContext(CtxUser)
 
   return (
     <Card>
