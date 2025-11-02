@@ -1,6 +1,8 @@
-import { DEFAULT_ERROR_MESSAGE } from '@constants/error'
-import axios, { type AxiosRequestConfig } from 'axios'
 import * as React from 'react'
+
+import axios, { type AxiosRequestConfig } from 'axios'
+
+import { DEFAULT_ERROR_MESSAGE } from '@constants/error'
 
 export function useAxios() {
   // Hooks

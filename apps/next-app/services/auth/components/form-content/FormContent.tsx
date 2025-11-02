@@ -1,6 +1,7 @@
+import { AlertCircleIcon } from 'lucide-react'
+
 import { Alert, AlertDescription, AlertTitle } from '@components/ui/alert'
 import { Spinner } from '@components/ui/spinner'
-import { AlertCircleIcon } from 'lucide-react'
 
 interface StateLoadingProps {
   className?: string

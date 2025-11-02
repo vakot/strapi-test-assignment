@@ -1,5 +1,6 @@
-import type { User } from '@services/user/types'
 import * as React from 'react'
+
+import type { User } from '@services/user/types'
 
 const DEFAULT_USER: Omit<User, 'details'> = { email: '' }
 

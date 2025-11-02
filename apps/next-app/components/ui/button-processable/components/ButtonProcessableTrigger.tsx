@@ -1,7 +1,7 @@
+import * as React from 'react'
+
 import { Button } from '@components/ui/button'
 import { CtxButtonProcessable } from '@components/ui/button-processable/contexts'
-
-import * as React from 'react'
 
 export interface ButtonProcessableTriggerProps
   extends React.ComponentPropsWithoutRef<typeof Button> {}

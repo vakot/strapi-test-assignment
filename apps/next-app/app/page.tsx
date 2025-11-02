@@ -1,5 +1,7 @@
 'use client'
 
+import * as React from 'react'
+
 import {
   Card,
   CardContent,
@@ -23,8 +25,7 @@ import {
   ButtonNavigationContent,
   ButtonNavigationTrigger,
 } from '@services/navigation/components/button-navigation'
-import { User } from '@services/user/types'
-import * as React from 'react'
+import type { User } from '@services/user/types'
 
 const ContentVisitor: React.FC = () => {
   return (

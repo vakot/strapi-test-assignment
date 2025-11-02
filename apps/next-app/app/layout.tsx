@@ -1,12 +1,13 @@
+import axios from 'axios'
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import { cookies as headers } from 'next/headers'
+
 import { Toaster } from '@components/ui/sonner'
 import { API_BASE_URL } from '@constants/api'
 import { ApiEndpoints } from '@constants/routes'
 import { UserProvider } from '@contexts/user/UserProvider'
 import type { User } from '@services/user/types'
-import axios from 'axios'
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { cookies as headers } from 'next/headers'
 import './globals.css'
 
 const getUser = async () => {

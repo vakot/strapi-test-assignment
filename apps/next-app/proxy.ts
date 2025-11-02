@@ -1,6 +1,7 @@
-import { AppRoutes, AUTH_PAGES, PUBLIC_PAGES } from '@constants/routes'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
+
+import { AppRoutes, AUTH_PAGES, PUBLIC_PAGES } from '@constants/routes'
 
 export function proxy(req: NextRequest) {
   const token = req.cookies.get('jwt')?.value

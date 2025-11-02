@@ -1,6 +1,7 @@
 'use client'
 
 import type { User } from '@services/user/types'
+
 import { CtxUser } from './'
 
 export interface UserProviderProps {

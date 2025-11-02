@@ -1,5 +1,8 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
+
 import { API_BASE_URL } from '@constants/api'
 import { DEFAULT_ERROR_MESSAGE } from '@constants/error'
 import { ApiEndpoints, AppRoutes } from '@constants/routes'
@@ -8,9 +11,7 @@ import type {
   FormSignupData,
 } from '@services/auth/components/types'
 import { useAxios } from '@services/axios/hooks/useAxios'
-import { User } from '@services/user/types'
-import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
+import type { User } from '@services/user/types'
 
 /**
  * @name useAuth

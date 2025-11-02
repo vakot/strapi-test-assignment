@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { AxiosError } from 'axios'
+import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server'
 
 import { getErrorMessage, getErrorStatus } from '@lib/api'
 import { strapi } from '@lib/strapi'
-import { AxiosError } from 'axios'
 
 export async function GET(req: NextRequest) {
   try {

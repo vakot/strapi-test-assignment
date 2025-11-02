@@ -1,5 +1,9 @@
 'use client'
 
+import * as React from 'react'
+
+import { Separator } from '@radix-ui/react-separator'
+
 import {
   Card,
   CardContent,
@@ -8,14 +12,12 @@ import {
   CardTitle,
 } from '@components/ui/card'
 import { CtxUser } from '@contexts/user'
-import { Separator } from '@radix-ui/react-separator'
 import {
   ButtonLogout,
   ButtonLogoutContent,
   ButtonLogoutError,
   ButtonLogoutTrigger,
 } from '@services/auth/components/button-logout'
-import * as React from 'react'
 
 export default function Dashboard() {
   // Context

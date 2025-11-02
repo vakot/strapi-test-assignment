@@ -1,7 +1,8 @@
+import { NextResponse } from 'next/server'
+
 import { getErrorMessage, getErrorStatus } from '@lib/api'
 import { withCookieJWT } from '@lib/auth'
 import { strapi } from '@lib/strapi'
-import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
   try {

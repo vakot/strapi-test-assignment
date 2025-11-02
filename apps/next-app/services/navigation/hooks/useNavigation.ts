@@ -1,8 +1,10 @@
 'use client'
 
-import { AppRoutes } from '@constants/routes'
-import { useRouter } from 'next/navigation'
 import * as React from 'react'
+
+import { useRouter } from 'next/navigation'
+
+import type { AppRoutes } from '@constants/routes'
 
 export const useNavigation = () => {
   // Hooks

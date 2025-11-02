@@ -1,7 +1,10 @@
+import * as React from 'react'
+
+import { Check } from 'lucide-react'
+
 import { Spinner } from '@components/ui/spinner'
 import { cn } from '@lib/utils'
-import { Check } from 'lucide-react'
-import * as React from 'react'
+
 import { DEFAULT_LOADING_LABEL, DEFAULT_SUCCESS_LABEL } from '../constants'
 import { CtxButtonProcessable } from '../contexts'
 

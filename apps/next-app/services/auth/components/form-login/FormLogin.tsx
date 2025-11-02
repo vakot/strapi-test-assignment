@@ -1,10 +1,11 @@
 'use client'
 
+import { type SubmitHandler, useForm } from 'react-hook-form'
+
 import { FormContent } from '@services/auth/components/form-content'
 import type { FormLoginData } from '@services/auth/components/types'
 import { useFormLogin } from '@services/auth/hooks/useFormLogin'
 import { FormField } from '@services/form/components/form-field'
-import { type SubmitHandler, useForm } from 'react-hook-form'
 
 export interface FormLoginProps {
   id?: string

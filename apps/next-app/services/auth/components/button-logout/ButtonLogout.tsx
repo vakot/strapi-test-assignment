@@ -1,6 +1,7 @@
 import { ButtonProcessable } from '@components/ui/button-processable'
 import type { ButtonProcessableState } from '@components/ui/button-processable/types'
 import { useAuth } from '@services/auth/hooks/useAuth'
+
 import { CtxButtonLogout } from './contexts'
 
 export interface ButtonLogoutProps

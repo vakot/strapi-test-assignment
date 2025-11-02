@@ -1,8 +1,9 @@
+import * as React from 'react'
+
 import { ButtonProcessable } from '@components/ui/button-processable'
-import { AppRoutes } from '@constants/routes'
+import type { AppRoutes } from '@constants/routes'
 import { CtxButtonNavigation } from '@services/navigation/components/button-navigation/contexts'
 import { useNavigation } from '@services/navigation/hooks/useNavigation'
-import * as React from 'react'
 
 export interface ButtonNavigationProps
   extends Omit<

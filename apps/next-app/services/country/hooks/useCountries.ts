@@ -1,11 +1,12 @@
 'use client'
 
-import type { Country } from '../types'
+import * as React from 'react'
 
 import { API_BASE_URL } from '@constants/api'
 import { ApiEndpoints } from '@constants/routes'
 import { useAxios } from '@services/axios/hooks/useAxios'
-import * as React from 'react'
+
+import type { Country } from '../types'
 
 const useCountries = () => {
   // Hooks

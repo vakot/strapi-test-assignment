@@ -1,8 +1,9 @@
+import { AxiosError } from 'axios'
+
 import {
   DEFAULT_API_ERROR_MESSAGE,
   DEFAULT_API_ERROR_STATUS,
 } from '@constants/api'
-import { AxiosError } from 'axios'
 
 type AxiosErrorCode = NonNullable<AxiosError['code']>
 type ErrorWithCode = { code?: string }

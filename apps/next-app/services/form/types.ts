@@ -1,4 +1,4 @@
-import { ControllerRenderProps, FieldValues } from 'react-hook-form'
+import type { ControllerRenderProps, FieldValues } from 'react-hook-form'
 
 export type SelectOption = {
   value: string | number

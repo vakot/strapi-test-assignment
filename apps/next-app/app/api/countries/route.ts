@@ -1,6 +1,7 @@
+import { NextResponse } from 'next/server'
+
 import { getErrorMessage, getErrorStatus } from '@lib/api'
 import { strapi } from '@lib/strapi'
-import { NextResponse } from 'next/server'
 
 export async function GET() {
   try {

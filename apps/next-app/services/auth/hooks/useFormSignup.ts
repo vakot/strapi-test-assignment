@@ -1,12 +1,12 @@
 'use client'
 
-import type { Country } from '@services/country/types'
-import type { FormField } from '@services/form/types'
 import * as React from 'react'
 
 import { API_BASE_URL } from '@constants/api'
 import { ApiEndpoints } from '@constants/routes'
 import { useAxios } from '@services/axios/hooks/useAxios'
+import type { Country } from '@services/country/types'
+import type { FormField } from '@services/form/types'
 
 const useFormSignup = (countryId: Country['id'] = 'default') => {
   // Hooks

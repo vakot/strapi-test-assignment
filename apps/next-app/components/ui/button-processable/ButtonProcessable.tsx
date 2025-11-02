@@ -1,8 +1,9 @@
 'use client'
 
 import * as React from 'react'
+
 import { CtxButtonProcessable } from './contexts'
-import { ButtonProcessableState } from './types'
+import type { ButtonProcessableState } from './types'
 
 export interface ButtonProcessableProps
   extends React.HTMLAttributes<HTMLDivElement>,

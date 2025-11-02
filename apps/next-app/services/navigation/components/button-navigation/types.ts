@@ -1,4 +1,4 @@
-import { useNavigation } from '@services/navigation/hooks/useNavigation'
+import type { useNavigation } from '@services/navigation/hooks/useNavigation'
 
 export type ButtonNavigationState = {
   to: string
