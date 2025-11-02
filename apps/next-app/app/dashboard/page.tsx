@@ -2,8 +2,6 @@
 
 import * as React from 'react'
 
-import { Separator } from '@radix-ui/react-separator'
-
 import {
   Card,
   CardContent,
@@ -11,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@components/ui/card'
+import { Separator } from '@components/ui/separator'
 import { CtxUser } from '@contexts/user'
 import {
   ButtonLogout,
@@ -44,7 +43,7 @@ export default function Dashboard() {
         </span>
       </CardContent>
 
-      <CardFooter>
+      <CardFooter className="text-center">
         Dummy dashboard page to confirm user context is shared across pages
       </CardFooter>
     </Card>
