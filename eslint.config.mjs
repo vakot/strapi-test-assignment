@@ -1,4 +1,5 @@
 import pluginTypescript from '@typescript-eslint/eslint-plugin'
+import pluginImport from 'eslint-plugin-import'
 import pluginPrettier from 'eslint-plugin-prettier'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
@@ -8,6 +9,7 @@ export default defineConfig([
     plugins: {
       '@typescript-eslint': pluginTypescript,
       prettier: pluginPrettier,
+      import: pluginImport,
     },
     rules: {
       /*
@@ -28,6 +30,28 @@ export default defineConfig([
       '@typescript-eslint/no-unused-vars': [
         'warn',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+
+      /*
+       * STYLES
+       */
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          prefer: 'type-imports',
+          disallowTypeAnnotations: false,
+        },
+      ],
+      'no-restricted-imports': [
+        'warn',
+        {
+          patterns: [
+            {
+              group: ['../../*', '!../../eslint.config.mjs'],
+              message: `Use an alias import instead of long relative paths (../../)`,
+            },
+          ],
+        },
       ],
     },
   },
