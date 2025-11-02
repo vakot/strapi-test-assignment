@@ -9,13 +9,10 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitThis": true,
     "noEmitOnError": true,
-    "baseUrl": ".",
-    "paths": {
-      "@types/*": ["types/*"]
-    }
+    "baseUrl": "."
   },
   "references": [
-    { "path": "apps/next" },
-    { "path": "apps/strapi" }
+    { "path": "apps/next-app" },
+    { "path": "apps/strapi-app" }
   ]
 }

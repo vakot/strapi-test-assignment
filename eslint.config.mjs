@@ -1,53 +1,57 @@
 import pluginTypescript from '@typescript-eslint/eslint-plugin'
-import pluginImport from 'eslint-plugin-import'
+import parserTypescript from '@typescript-eslint/parser'
 import pluginPrettier from 'eslint-plugin-prettier'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import { globalIgnores, defineConfig } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['node_modules/**', 'eslint']),
+  globalIgnores(['**/node_modules/**']),
   {
+    files: ['**/*.{ts,tsx,js,jsx,mjs,mts}'],
+    languageOptions: {
+      parser: parserTypescript,
+      parserOptions: {
+        project: './tsconfig.base.json',
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
     plugins: {
       '@typescript-eslint': pluginTypescript,
       prettier: pluginPrettier,
-      import: pluginImport,
     },
     rules: {
       /*
-       * RECOMMENDED
+       * Recommended
        */
-      ...pluginPrettier.configs.recommended.rules,
       ...pluginTypescript.configs.recommended.rules,
+      ...pluginPrettier.configs.recommended.rules,
 
       /*
-       * PRETTIER
+       * Prettier
        */
       'prettier/prettier': 'warn',
 
       /*
-       * TYPESCRIPT
+       * Typescript
        */
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      '@typescript-eslint/consistent-type-exports': [
+        'error',
+        { fixMixedExportsWithInlineTypeSpecifier: true },
       ],
 
       /*
-       * STYLES
+       * Imports
        */
-      '@typescript-eslint/consistent-type-imports': [
-        'error',
-        {
-          prefer: 'type-imports',
-          disallowTypeAnnotations: false,
-        },
-      ],
       'no-restricted-imports': [
         'warn',
         {
           patterns: [
             {
-              group: ['../../*', '!../../eslint.config.mjs'],
+              group: [
+                '../../*',
+                '!../../eslint.config.mjs',
+                '!../../tsconfig.base.json',
+              ],
               message: `Use an alias import instead of long relative paths (../../)`,
             },
           ],
